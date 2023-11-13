@@ -1,0 +1,3676 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>EclipseXMLParser.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package edu.hm.hafner.analysis.parser;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Optional;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import javax.xml.xpath.XPath;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import javax.xml.xpath.XPathConstants;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import javax.xml.xpath.XPathExpression;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import javax.xml.xpath.XPathExpressionException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import javax.xml.xpath.XPathFactory;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.w3c.dom.Document;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.w3c.dom.Element;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.w3c.dom.NodeList;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Categories;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.IssueBuilder;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.IssueParser;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.ParsingException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.ReaderFactory;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Report;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.util.XmlElementUtil;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Parser for Eclipse Compiler output in XML format.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @author Jason Faust</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public class EclipseXMLParser extends IssueParser {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String PREVIEW_RELATED = &#34;Preview Related&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String COMPLIANCE = &#34;Compliance&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String MODULE = &#34;Module&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String RESTRICTION = &#34;Restriction&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String NLS = &#34;NLS&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String UNCHECKED_RAW = &#34;Unchecked Raw&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String UNNECESSARY_CODE = &#34;Unnecessary Code&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String NAME_SHADOWING_CONFLICT = &#34;Name Shadowing Conflict&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String POTENTIAL_PROGRAMMING_PROBLEM = &#34;Potential Programming Problem&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String CODE_STYLE = &#34;Code Style&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String INTERNAL = &#34;Internal&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String MEMBER = &#34;Member&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String TYPE = &#34;Type&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String IMPORT = &#34;Import&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String SYNTAX = &#34;Syntax&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String BUILDPATH = &#34;Buildpath&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    static final String UNSPECIFIED = &#34;Unspecified&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final long serialVersionUID = 1L;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean accepts(final ReaderFactory readerFactory) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_50'/>
+50
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_50'>3</a>
+<span>
+1. accepts : replaced boolean return with true for edu/hm/hafner/analysis/parser/EclipseXMLParser::accepts &rarr; KILLED<br/>
+2. accepts : removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::isXmlFile &rarr; KILLED<br/>
+3. accepts : replaced boolean return with false for edu/hm/hafner/analysis/parser/EclipseXMLParser::accepts &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return isXmlFile(readerFactory);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Report parse(final ReaderFactory readerFactory) throws ParsingException {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_55'/>
+55
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_55'>1</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/IssueBuilder::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        try (IssueBuilder issueBuilder = new IssueBuilder()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_56'/>
+56
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_56'>1</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/ReaderFactory::readDocument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            Document doc = readerFactory.readDocument();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_58'/>
+58
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_58'>1</a>
+<span>
+1. parse : removed call to javax/xml/xpath/XPathFactory::newInstance &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            XPathFactory xPathFactory = XPathFactory.newInstance();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_59'/>
+59
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_59'>1</a>
+<span>
+1. parse : removed call to javax/xml/xpath/XPathFactory::newXPath &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            XPath xPath = xPathFactory.newXPath();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_60'/>
+60
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_60'>1</a>
+<span>
+1. parse : removed call to javax/xml/xpath/XPath::compile &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            XPathExpression sourcePath = xPath.compile(&#34;/compiler/sources/source[problems]&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_61'/>
+61
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_61'>1</a>
+<span>
+1. parse : removed call to javax/xml/xpath/XPath::compile &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            XPathExpression fileNamePath = xPath.compile(&#34;./@path&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_62'/>
+62
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_62'>1</a>
+<span>
+1. parse : removed call to javax/xml/xpath/XPath::compile &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            XPathExpression problemsPath = xPath.compile(&#34;problems/problem&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_64'/>
+64
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_64'>1</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/Report::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            Report report = new Report();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_66'/>
+66
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_66'>2</a>
+<span>
+1. parse : removed call to javax/xml/xpath/XPathExpression::evaluate &rarr; KILLED<br/>
+2. parse : replaced call to javax/xml/xpath/XPathExpression::evaluate with argument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            NodeList sources = (NodeList)sourcePath.evaluate(doc, XPathConstants.NODESET);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_67'/>
+67
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_67'>1</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/util/XmlElementUtil::nodeListToList &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            for (Element source : XmlElementUtil.nodeListToList(sources)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_68'/>
+68
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_68'>1</a>
+<span>
+1. parse : removed call to javax/xml/xpath/XPathExpression::evaluate &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                String fileName = fileNamePath.evaluate(source);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_69'/>
+69
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_69'>2</a>
+<span>
+1. parse : replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED<br/>
+2. parse : removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                issueBuilder.setFileName(fileName);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_71'/>
+71
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_71'>2</a>
+<span>
+1. parse : replaced call to javax/xml/xpath/XPathExpression::evaluate with argument &rarr; KILLED<br/>
+2. parse : removed call to javax/xml/xpath/XPathExpression::evaluate &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                NodeList problems = (NodeList)problemsPath.evaluate(source, XPathConstants.NODESET);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_72'/>
+72
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_72'>1</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/util/XmlElementUtil::nodeListToList &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                for (Element problem : XmlElementUtil.nodeListToList(problems)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_73'/>
+73
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_73'>3</a>
+<span>
+1. parse : replaced call to edu/hm/hafner/analysis/IssueBuilder::guessSeverity with receiver &rarr; KILLED<br/>
+2. parse : removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::extractSeverity &rarr; KILLED<br/>
+3. parse : removed call to edu/hm/hafner/analysis/IssueBuilder::guessSeverity &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    issueBuilder.guessSeverity(extractSeverity(problem))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_74'/>
+74
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_74'>3</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::extractLineStart &rarr; KILLED<br/>
+2. parse : removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED<br/>
+3. parse : replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setLineStart(extractLineStart(problem))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_75'/>
+75
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_75'>3</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED<br/>
+2. parse : replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED<br/>
+3. parse : removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::extractMessage &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setMessage(extractMessage(problem))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_76'/>
+76
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_76'>5</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED<br/>
+2. parse : replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED<br/>
+3. parse : removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::extractCategoryId &rarr; KILLED<br/>
+4. parse : removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; KILLED<br/>
+5. parse : replaced call to edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory with argument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setCategory(decodeCategory(extractCategoryId(problem)))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_77'/>
+77
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_77'>3</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::extractColumnRange &rarr; SURVIVED<br/>
+2. parse : replaced call to edu/hm/hafner/analysis/IssueBuilder::setAdditionalProperties with receiver &rarr; SURVIVED<br/>
+3. parse : removed call to edu/hm/hafner/analysis/IssueBuilder::setAdditionalProperties &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                            .setAdditionalProperties(extractColumnRange(problem));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_79'/>
+79
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_79'>3</a>
+<span>
+1. parse : replaced call to edu/hm/hafner/analysis/Report::add with receiver &rarr; KILLED<br/>
+2. parse : removed call to edu/hm/hafner/analysis/IssueBuilder::build &rarr; KILLED<br/>
+3. parse : removed call to edu/hm/hafner/analysis/Report::add &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    report.add(issueBuilder.build());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            return report;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        catch (XPathExpressionException e) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_86'/>
+86
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_86'>1</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/ParsingException::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            throw new ParsingException(e);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * These categories were taken from the ECJ source code. From January 15th, 2020, Ver. 3.20.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_92'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param categoryId</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *     eclipse generated category id.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_95'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return decoded category, or empty string.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_96'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @see &#60;a href=&#34;https://github.com/eclipse/eclipse.jdt.core/blob/master/org.eclipse.jdt.core/compiler/org/eclipse/jdt/core/compiler/CategorizedProblem.java&#34;&#62;Eclipse Source Code&#60;/a&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_98'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @SuppressWarnings(&#34;PMD.CyclomaticComplexity&#34;)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_99'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String decodeCategory(final String categoryId) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_100'/>
+100
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_100'>20</a>
+<span>
+1. decodeCategory : RemoveSwitch 11 (case value 11) &rarr; SURVIVED<br/>
+2. decodeCategory : RemoveSwitch 10 (case value 10) &rarr; SURVIVED<br/>
+3. decodeCategory : RemoveSwitch 15 (case value 15) &rarr; SURVIVED<br/>
+4. decodeCategory : RemoveSwitch 14 (case value 14) &rarr; SURVIVED<br/>
+5. decodeCategory : RemoveSwitch 13 (case value 13) &rarr; SURVIVED<br/>
+6. decodeCategory : RemoveSwitch 18 (case value 18) &rarr; SURVIVED<br/>
+7. decodeCategory : RemoveSwitch 17 (case value 17) &rarr; SURVIVED<br/>
+8. decodeCategory : RemoveSwitch 16 (case value 16) &rarr; SURVIVED<br/>
+9. decodeCategory : RemoveSwitch 2 (case value 2) &rarr; SURVIVED<br/>
+10. decodeCategory : RemoveSwitch 1 (case value 1) &rarr; SURVIVED<br/>
+11. decodeCategory : RemoveSwitch 3 (case value 3) &rarr; SURVIVED<br/>
+12. decodeCategory : RemoveSwitch 6 (case value 6) &rarr; SURVIVED<br/>
+13. decodeCategory : RemoveSwitch 5 (case value 5) &rarr; SURVIVED<br/>
+14. decodeCategory : RemoveSwitch 8 (case value 8) &rarr; SURVIVED<br/>
+15. decodeCategory : RemoveSwitch 0 (case value 0) &rarr; SURVIVED<br/>
+16. decodeCategory : RemoveSwitch 12 (case value 12) &rarr; KILLED<br/>
+17. decodeCategory : Changed switch default to be first case &rarr; KILLED<br/>
+18. decodeCategory : RemoveSwitch 9 (case value 9) &rarr; KILLED<br/>
+19. decodeCategory : RemoveSwitch 4 (case value 4) &rarr; KILLED<br/>
+20. decodeCategory : RemoveSwitch 7 (case value 7) &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        switch (categoryId) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;0&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_102'/>
+102
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_102'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return UNSPECIFIED;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;10&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_104'/>
+104
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_104'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return BUILDPATH;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_105'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;20&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_106'/>
+106
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_106'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return SYNTAX;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_107'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;30&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_108'/>
+108
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_108'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return IMPORT;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_109'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;40&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_110'/>
+110
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_110'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return TYPE;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;50&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_112'/>
+112
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_112'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return MEMBER;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;60&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_114'/>
+114
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_114'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return INTERNAL;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_115'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;70&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_116'/>
+116
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_116'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return Categories.JAVADOC;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_117'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;80&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_118'/>
+118
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_118'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return CODE_STYLE;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_119'/>
+119
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_119'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;90&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_120'/>
+120
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_120'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return POTENTIAL_PROGRAMMING_PROBLEM;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;100&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_122'/>
+122
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_122'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return NAME_SHADOWING_CONFLICT;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_123'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;110&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_124'/>
+124
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_124'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return Categories.DEPRECATION;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_125'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;120&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_126'/>
+126
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_126'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return UNNECESSARY_CODE;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_127'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;130&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_128'/>
+128
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_128'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return UNCHECKED_RAW;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_129'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;140&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_130'/>
+130
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_130'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return NLS;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_131'/>
+131
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_131'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;150&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_132'/>
+132
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_132'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return RESTRICTION;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_133'/>
+133
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_133'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;160&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_134'/>
+134
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_134'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return MODULE;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_135'/>
+135
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_135'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;170&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_136'/>
+136
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_136'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return COMPLIANCE;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_137'/>
+137
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_137'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;180&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_138'/>
+138
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_138'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return PREVIEW_RELATED;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_139'/>
+139
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_139'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            default:</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_140'/>
+140
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_140'>1</a>
+<span>
+1. decodeCategory : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                return Categories.OTHER;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_141'/>
+141
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_141'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_142'/>
+142
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_142'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_143'/>
+143
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_143'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_144'/>
+144
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_144'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String extractMessage(final Element problem) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_145'/>
+145
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_145'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        // XPath is &#34;message/@value&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_146'/>
+146
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_146'>3</a>
+<span>
+1. extractMessage : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::extractMessage &rarr; KILLED<br/>
+2. extractMessage : removed call to edu/hm/hafner/analysis/util/XmlElementUtil::nodeListToList &rarr; KILLED<br/>
+3. extractMessage : removed call to org/w3c/dom/Element::getChildNodes &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return XmlElementUtil.nodeListToList(problem.getChildNodes())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_147'/>
+147
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_147'>1</a>
+<span>
+1. extractMessage : removed call to java/util/List::stream &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .stream()</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_148'/>
+148
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_148'>6</a>
+<span>
+1. lambda$extractMessage$0 : replaced boolean return with true for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractMessage$0 &rarr; SURVIVED<br/>
+2. extractMessage : replaced call to java/util/stream/Stream::filter with receiver &rarr; SURVIVED<br/>
+3. lambda$extractMessage$0 : removed call to org/w3c/dom/Element::getNodeName &rarr; KILLED<br/>
+4. lambda$extractMessage$0 : removed call to java/lang/String::equals &rarr; KILLED<br/>
+5. lambda$extractMessage$0 : replaced boolean return with false for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractMessage$0 &rarr; KILLED<br/>
+6. extractMessage : removed call to java/util/stream/Stream::filter &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                .filter(e -&#62; &#34;message&#34;.equals(e.getNodeName()))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_149'/>
+149
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_149'>1</a>
+<span>
+1. extractMessage : removed call to java/util/stream/Stream::findFirst &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .findFirst()</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_150'/>
+150
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_150'>5</a>
+<span>
+1. lambda$extractMessage$1 : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractMessage$1 &rarr; KILLED<br/>
+2. lambda$extractMessage$1 : removed call to org/w3c/dom/Element::getAttribute &rarr; KILLED<br/>
+3. extractMessage : removed call to java/util/Optional::map &rarr; KILLED<br/>
+4. extractMessage : replaced call to java/util/Optional::map with receiver &rarr; KILLED<br/>
+5. lambda$extractMessage$1 : replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .map(e -&#62; e.getAttribute(&#34;value&#34;))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_151'/>
+151
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_151'>2</a>
+<span>
+1. extractMessage : removed call to java/util/Optional::orElse &rarr; KILLED<br/>
+2. extractMessage : replaced call to java/util/Optional::orElse with argument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .orElse(&#34;&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_152'/>
+152
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_152'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_153'/>
+153
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_153'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_154'/>
+154
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_154'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String extractSeverity(final Element problem) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_155'/>
+155
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_155'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        // XPath is &#34;./@severity&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_156'/>
+156
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_156'>3</a>
+<span>
+1. extractSeverity : removed call to org/w3c/dom/Element::getAttribute &rarr; KILLED<br/>
+2. extractSeverity : replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; KILLED<br/>
+3. extractSeverity : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::extractSeverity &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return problem.getAttribute(&#34;severity&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_157'/>
+157
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_157'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_158'/>
+158
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_158'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_159'/>
+159
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_159'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String extractLineStart(final Element problem) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_160'/>
+160
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_160'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        // XPath is &#34;./@line&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_161'/>
+161
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_161'>3</a>
+<span>
+1. extractLineStart : removed call to org/w3c/dom/Element::getAttribute &rarr; KILLED<br/>
+2. extractLineStart : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::extractLineStart &rarr; KILLED<br/>
+3. extractLineStart : replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return problem.getAttribute(&#34;line&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_162'/>
+162
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_162'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_163'/>
+163
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_163'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_164'/>
+164
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_164'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /*</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_165'/>
+165
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_165'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Use columns to make issue &#39;unique&#39;, range isn&#39;t useful for counting in the physical source.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_166'/>
+166
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_166'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_167'/>
+167
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_167'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String extractColumnRange(final Element problem) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_168'/>
+168
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_168'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        // XPath is &#34;source_context/@sourceStart&#34; and &#34;source_context/@sourceEnd&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_169'/>
+169
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_169'>2</a>
+<span>
+1. extractColumnRange : removed call to org/w3c/dom/Element::getChildNodes &rarr; SURVIVED<br/>
+2. extractColumnRange : removed call to edu/hm/hafner/analysis/util/XmlElementUtil::nodeListToList &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        Optional&#60;Element&#62; ctx = XmlElementUtil.nodeListToList(problem.getChildNodes())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_170'/>
+170
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_170'>1</a>
+<span>
+1. extractColumnRange : removed call to java/util/List::stream &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .stream()</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_171'/>
+171
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_171'>6</a>
+<span>
+1. lambda$extractColumnRange$2 : replaced boolean return with true for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractColumnRange$2 &rarr; SURVIVED<br/>
+2. lambda$extractColumnRange$2 : removed call to org/w3c/dom/Element::getNodeName &rarr; SURVIVED<br/>
+3. lambda$extractColumnRange$2 : removed call to java/lang/String::equals &rarr; SURVIVED<br/>
+4. extractColumnRange : replaced call to java/util/stream/Stream::filter with receiver &rarr; SURVIVED<br/>
+5. lambda$extractColumnRange$2 : replaced boolean return with false for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractColumnRange$2 &rarr; SURVIVED<br/>
+6. extractColumnRange : removed call to java/util/stream/Stream::filter &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                .filter(e -&#62; &#34;source_context&#34;.equals(e.getNodeName()))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_172'/>
+172
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_172'>1</a>
+<span>
+1. extractColumnRange : removed call to java/util/stream/Stream::findFirst &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .findFirst();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_173'/>
+173
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_173'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_174'/>
+174
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_174'>1</a>
+<span>
+1. extractColumnRange : removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        StringBuilder range = new StringBuilder();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_175'/>
+175
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_175'>6</a>
+<span>
+1. extractColumnRange : removed call to java/util/Optional::ifPresent &rarr; SURVIVED<br/>
+2. lambda$extractColumnRange$3 : removed call to org/w3c/dom/Element::getAttribute &rarr; SURVIVED<br/>
+3. lambda$extractColumnRange$3 : replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; SURVIVED<br/>
+4. lambda$extractColumnRange$3 : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractColumnRange$3 &rarr; SURVIVED<br/>
+5. extractColumnRange : replaced call to java/util/Optional::map with receiver &rarr; KILLED<br/>
+6. extractColumnRange : removed call to java/util/Optional::map &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        ctx.map(e -&#62; e.getAttribute(&#34;sourceStart&#34;)).ifPresent(range::append);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_176'/>
+176
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_176'>3</a>
+<span>
+1. extractColumnRange : removed call to java/lang/StringBuilder::append &rarr; SURVIVED<br/>
+2. extractColumnRange : Substituted 45 with 46 &rarr; SURVIVED<br/>
+3. extractColumnRange : replaced call to java/lang/StringBuilder::append with receiver &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        range.append(&#39;-&#39;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_177'/>
+177
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_177'>6</a>
+<span>
+1. extractColumnRange : removed call to java/util/Optional::ifPresent &rarr; SURVIVED<br/>
+2. lambda$extractColumnRange$4 : replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; SURVIVED<br/>
+3. lambda$extractColumnRange$4 : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractColumnRange$4 &rarr; SURVIVED<br/>
+4. lambda$extractColumnRange$4 : removed call to org/w3c/dom/Element::getAttribute &rarr; SURVIVED<br/>
+5. extractColumnRange : replaced call to java/util/Optional::map with receiver &rarr; KILLED<br/>
+6. extractColumnRange : removed call to java/util/Optional::map &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        ctx.map(e -&#62; e.getAttribute(&#34;sourceEnd&#34;)).ifPresent(range::append);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_178'/>
+178
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_178'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_179'/>
+179
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_179'>2</a>
+<span>
+1. extractColumnRange : removed call to java/lang/StringBuilder::toString &rarr; SURVIVED<br/>
+2. extractColumnRange : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::extractColumnRange &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return range.toString();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_180'/>
+180
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_180'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_181'/>
+181
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_181'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_182'/>
+182
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_182'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String extractCategoryId(final Element problem) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_183'/>
+183
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_183'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        // XPath is &#34;./@categoryID&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_184'/>
+184
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_184'>3</a>
+<span>
+1. extractCategoryId : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::extractCategoryId &rarr; KILLED<br/>
+2. extractCategoryId : removed call to org/w3c/dom/Element::getAttribute &rarr; KILLED<br/>
+3. extractCategoryId : replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return problem.getAttribute(&#34;categoryID&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_185'/>
+185
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_185'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_186'/>
+186
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_186'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@4009c7cb_187'/>
+187
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_187'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_50'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>accepts<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldNotAcceptTextFiles()]</span></span> replaced boolean return with true for edu/hm/hafner/analysis/parser/EclipseXMLParser::accepts &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>accepts<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldOnlyAcceptXmlFiles()]</span></span> removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::isXmlFile &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>accepts<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldOnlyAcceptXmlFiles()]</span></span> replaced boolean return with false for edu/hm/hafner/analysis/parser/EclipseXMLParser::accepts &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_55'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_56'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/ReaderFactory::readDocument &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_58'>58</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_58'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to javax/xml/xpath/XPathFactory::newInstance &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_59'>59</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_59'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to javax/xml/xpath/XPathFactory::newXPath &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_60'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to javax/xml/xpath/XPath::compile &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_61'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to javax/xml/xpath/XPath::compile &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_62'>62</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_62'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to javax/xml/xpath/XPath::compile &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_64'>64</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_64'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/Report::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_66'>66</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_66'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to javax/xml/xpath/XPathExpression::evaluate &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to javax/xml/xpath/XPathExpression::evaluate with argument &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_67'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/util/XmlElementUtil::nodeListToList &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_68'>68</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_68'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to javax/xml/xpath/XPathExpression::evaluate &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_69'>69</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_69'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_71'>71</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_71'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to javax/xml/xpath/XPathExpression::evaluate with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to javax/xml/xpath/XPathExpression::evaluate &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_72'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/util/XmlElementUtil::nodeListToList &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_73'>73</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_73'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::guessSeverity with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::extractSeverity &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::guessSeverity &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_74'>74</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_74'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::extractLineStart &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_75'>75</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_75'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::extractMessage &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_76'>76</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_76'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::extractCategoryId &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory with argument &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_77'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/parser/EclipseXMLParser::extractColumnRange &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>none</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setAdditionalProperties with receiver &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setAdditionalProperties &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_79'>79</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_79'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to edu/hm/hafner/analysis/Report::add with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::build &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/Report::add &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_86'>86</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_86'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/ParsingException::&#60;init&#62; &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_100'>100</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_100'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 11 (case value 11) &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 10 (case value 10) &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 15 (case value 15) &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 14 (case value 14) &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 13 (case value 13) &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> RemoveSwitch 12 (case value 12) &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 18 (case value 18) &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 17 (case value 17) &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>9.<span><b>9</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 16 (case value 16) &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>10.<span><b>10</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> Changed switch default to be first case &rarr; KILLED</p> <p class='KILLED'><span class='pop'>11.<span><b>11</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> RemoveSwitch 9 (case value 9) &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>12.<span><b>12</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 2 (case value 2) &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>13.<span><b>13</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 1 (case value 1) &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>14.<span><b>14</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldParseAllIssues()]</span></span> RemoveSwitch 4 (case value 4) &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>15.<span><b>15</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 3 (case value 3) &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>16.<span><b>16</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 6 (case value 6) &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>17.<span><b>17</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 5 (case value 5) &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>18.<span><b>18</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 8 (case value 8) &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>19.<span><b>19</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> RemoveSwitch 7 (case value 7) &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>20.<span><b>20</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> RemoveSwitch 0 (case value 0) &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_102'>102</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_102'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_104'>104</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_104'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_106'>106</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_106'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_108'>108</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_108'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_110'>110</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_110'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_112'>112</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_112'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_114'>114</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_114'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_116'>116</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_116'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_118'>118</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_118'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_120'>120</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_120'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_122'>122</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_122'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_124'>124</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_124'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_126'>126</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_126'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_128'>128</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_128'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_130'>130</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_130'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_132'>132</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_132'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_134'>134</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_134'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_136'>136</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_136'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_138'>138</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_138'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_140'>140</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_140'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>decodeCategory<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::decodeCategory &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_146'>146</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_146'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::extractMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/util/XmlElementUtil::nodeListToList &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to org/w3c/dom/Element::getChildNodes &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_147'>147</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_147'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/util/List::stream &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_148'>148</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_148'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$extractMessage$0<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to org/w3c/dom/Element::getNodeName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lambda$extractMessage$0<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/lang/String::equals &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>lambda$extractMessage$0<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractMessage$0 &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>lambda$extractMessage$0<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced boolean return with false for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractMessage$0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/util/stream/Stream::filter &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>none</span></span> replaced call to java/util/stream/Stream::filter with receiver &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_149'>149</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_149'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/util/stream/Stream::findFirst &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_150'>150</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_150'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$extractMessage$1<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractMessage$1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lambda$extractMessage$1<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to org/w3c/dom/Element::getAttribute &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/util/Optional::map &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to java/util/Optional::map with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>lambda$extractMessage$1<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_151'>151</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_151'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/util/Optional::orElse &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>extractMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to java/util/Optional::orElse with argument &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_156'>156</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_156'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to org/w3c/dom/Element::getAttribute &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>extractSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>extractSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::extractSeverity &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_161'>161</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_161'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractLineStart<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to org/w3c/dom/Element::getAttribute &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>extractLineStart<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::extractLineStart &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>extractLineStart<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_169'>169</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_169'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to edu/hm/hafner/analysis/util/XmlElementUtil::nodeListToList &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>none</span></span> removed call to org/w3c/dom/Element::getChildNodes &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_170'>170</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_170'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/util/List::stream &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_171'>171</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_171'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$extractColumnRange$2<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractColumnRange$2 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lambda$extractColumnRange$2<br/><b>Killed by : </b>none</span></span> removed call to org/w3c/dom/Element::getNodeName &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>lambda$extractColumnRange$2<br/><b>Killed by : </b>none</span></span> removed call to java/lang/String::equals &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>none</span></span> replaced call to java/util/stream/Stream::filter with receiver &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/util/stream/Stream::filter &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>lambda$extractColumnRange$2<br/><b>Killed by : </b>none</span></span> replaced boolean return with false for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractColumnRange$2 &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_172'>172</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_172'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/util/stream/Stream::findFirst &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_174'>174</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_174'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_175'>175</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_175'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>none</span></span> removed call to java/util/Optional::ifPresent &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to java/util/Optional::map with receiver &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>lambda$extractColumnRange$3<br/><b>Killed by : </b>none</span></span> removed call to org/w3c/dom/Element::getAttribute &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>lambda$extractColumnRange$3<br/><b>Killed by : </b>none</span></span> replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>lambda$extractColumnRange$3<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractColumnRange$3 &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/util/Optional::map &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_176'>176</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_176'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::append &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>none</span></span> Substituted 45 with 46 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>none</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_177'>177</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_177'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>none</span></span> removed call to java/util/Optional::ifPresent &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lambda$extractColumnRange$4<br/><b>Killed by : </b>none</span></span> replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>lambda$extractColumnRange$4<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::lambda$extractColumnRange$4 &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to java/util/Optional::map with receiver &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>lambda$extractColumnRange$4<br/><b>Killed by : </b>none</span></span> removed call to org/w3c/dom/Element::getAttribute &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to java/util/Optional::map &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_179'>179</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_179'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>none</span></span> removed call to java/lang/StringBuilder::toString &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>extractColumnRange<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::extractColumnRange &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@4009c7cb_184'>184</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@4009c7cb_184'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>extractCategoryId<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/EclipseXMLParser::extractCategoryId &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>extractCategoryId<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> removed call to org/w3c/dom/Element::getAttribute &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>extractCategoryId<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()]</span></span> replaced call to org/w3c/dom/Element::getAttribute with argument &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>CONSTRUCTOR_CALLS</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>EXPERIMENTAL_ARGUMENT_PROPAGATION</li>
+<li class='mutator'>EXPERIMENTAL_BIG_DECIMAL</li>
+<li class='mutator'>EXPERIMENTAL_BIG_INTEGER</li>
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE</li>
+<li class='mutator'>EXPERIMENTAL_NAKED_RECEIVER</li>
+<li class='mutator'>EXPERIMENTAL_REMOVE_SWITCH_MUTATOR_[0-99]</li>
+<li class='mutator'>EXPERIMENTAL_SWITCH</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INLINE_CONSTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NON_VOID_METHOD_CALLS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_IF</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_IF</li>
+<li class='mutator'>REMOVE_INCREMENTS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldParseAllIssues()] (11 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllEclipseIssues()] (11 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldNotAcceptTextFiles()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldOnlyAcceptXmlFiles()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldHandleEmptyFile()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldThrowParserException()] (8 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.15.1
+
+</body>
+</html>

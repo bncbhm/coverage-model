@@ -1,5 +1,6 @@
 package edu.hm.hafner.coverage.parser;
 
+import java.io.File;
 import java.io.Reader;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
@@ -88,6 +89,11 @@ public class JacocoParser extends CoverageParser {
         catch (XMLStreamException exception) {
             throw new ParsingException(exception);
         }
+    }
+
+    @Override
+    protected ModuleNode parseReportDirectory(File reportDirectory, FilteredLog log) {
+        throw new UnsupportedOperationException("");
     }
 
     private ModuleNode readModule(final XMLEventReader reader, final ModuleNode module)

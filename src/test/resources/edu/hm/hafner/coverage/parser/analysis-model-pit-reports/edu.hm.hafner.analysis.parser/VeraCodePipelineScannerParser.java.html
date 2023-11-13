@@ -1,0 +1,3245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>VeraCodePipelineScannerParser.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package edu.hm.hafner.analysis.parser;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.lang3.StringUtils;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.json.JSONArray;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.json.JSONObject;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Issue;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.IssueBuilder;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Report;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Severity;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import static j2html.TagCreator.*;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import static org.apache.commons.lang3.StringUtils.startsWith;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import static org.apache.commons.lang3.StringUtils.endsWith;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Parser for Veracode Pipeline Scanner (pipeline-scan) tool.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @author Juri Duval</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public class VeraCodePipelineScannerParser extends JsonIssueParser {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final String VALUE_NOT_SET = &#34;-&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final int VERACODE_LOW_THRESHOLD = 2;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final int VERACODE_HIGH_THRESHOLD = 4;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final long serialVersionUID = 1L;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected void parseJsonObject(final Report report, final JSONObject jsonReport, final IssueBuilder issueBuilder) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_29'/>
+29
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_29'>1</a>
+<span>
+1. parseJsonObject : removed call to org/json/JSONObject::optJSONArray &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        JSONArray findings = jsonReport.optJSONArray(&#34;findings&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_30'/>
+30
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_30'>3</a>
+<span>
+1. parseJsonObject : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+2. parseJsonObject : negated conditional &rarr; KILLED<br/>
+3. parseJsonObject : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (findings != null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_31'/>
+31
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_31'>1</a>
+<span>
+1. parseJsonObject : removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::parseFindings &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            parseFindings(report, findings, issueBuilder);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private void parseFindings(final Report report, final JSONArray resources, final IssueBuilder issueBuilder) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_36'/>
+36
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_36'>6</a>
+<span>
+1. parseFindings : negated conditional &rarr; KILLED<br/>
+2. parseFindings : changed conditional boundary &rarr; KILLED<br/>
+3. parseFindings : removed conditional - replaced comparison check with true &rarr; KILLED<br/>
+4. parseFindings : Substituted 0 with 1 &rarr; KILLED<br/>
+5. parseFindings : removed call to org/json/JSONArray::length &rarr; KILLED<br/>
+6. parseFindings : removed conditional - replaced comparison check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (int i = 0; i &#60; resources.length(); i++) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_37'/>
+37
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_37'>1</a>
+<span>
+1. parseFindings : removed call to org/json/JSONArray::get &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            final Object item = resources.get(i);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_38'/>
+38
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_38'>3</a>
+<span>
+1. parseFindings : removed conditional - replaced equality check with true &rarr; SURVIVED<br/>
+2. parseFindings : negated conditional &rarr; KILLED<br/>
+3. parseFindings : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            if (item instanceof JSONObject) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                final JSONObject finding = (JSONObject) item;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_40'/>
+40
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_40'>3</a>
+<span>
+1. parseFindings : replaced call to edu/hm/hafner/analysis/Report::add with receiver &rarr; KILLED<br/>
+2. parseFindings : removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::convertToIssue &rarr; KILLED<br/>
+3. parseFindings : removed call to edu/hm/hafner/analysis/Report::add &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                report.add(convertToIssue(finding, issueBuilder));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private Issue convertToIssue(final JSONObject finding, final IssueBuilder issueBuilder) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_46'/>
+46
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_46'>2</a>
+<span>
+1. convertToIssue : replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField with argument &rarr; KILLED<br/>
+2. convertToIssue : removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        final String rawFileName = getSourceFileField(finding, &#34;file&#34;, VALUE_NOT_SET);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_47'/>
+47
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_47'>2</a>
+<span>
+1. convertToIssue : replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getEnrichedFileName with argument &rarr; KILLED<br/>
+2. convertToIssue : removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getEnrichedFileName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        final String enrichedFileName = getEnrichedFileName(rawFileName);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_48'/>
+48
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_48'>5</a>
+<span>
+1. convertToIssue : Substituted 0 with 1 &rarr; KILLED<br/>
+2. convertToIssue : replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField with argument &rarr; KILLED<br/>
+3. convertToIssue : removed call to java/lang/Integer::valueOf &rarr; KILLED<br/>
+4. convertToIssue : removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField &rarr; KILLED<br/>
+5. convertToIssue : removed call to java/lang/Integer::intValue &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        final int line = getSourceFileField(finding, &#34;line&#34;, 0);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_49'/>
+49
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_49'>1</a>
+<span>
+1. convertToIssue : removed call to org/json/JSONObject::getInt &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        final int severity = finding.getInt(&#34;severity&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_50'/>
+50
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_50'>2</a>
+<span>
+1. convertToIssue : replaced call to org/json/JSONObject::getString with argument &rarr; KILLED<br/>
+2. convertToIssue : removed call to org/json/JSONObject::getString &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        final String title = finding.getString(&#34;title&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_51'/>
+51
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_51'>2</a>
+<span>
+1. convertToIssue : replaced call to org/json/JSONObject::getString with argument &rarr; KILLED<br/>
+2. convertToIssue : removed call to org/json/JSONObject::getString &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        final String issueType = finding.getString(&#34;issue_type&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_52'/>
+52
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_52'>2</a>
+<span>
+1. convertToIssue : removed call to org/json/JSONObject::getString &rarr; KILLED<br/>
+2. convertToIssue : replaced call to org/json/JSONObject::getString with argument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        final String issueTypeId = finding.getString(&#34;issue_type_id&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_53'/>
+53
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_53'>2</a>
+<span>
+1. convertToIssue : removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField &rarr; KILLED<br/>
+2. convertToIssue : replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField with argument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        final String scope = getSourceFileField(finding, &#34;scope&#34;, VALUE_NOT_SET);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_54'/>
+54
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_54'>2</a>
+<span>
+1. convertToIssue : replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getPackageName with argument &rarr; KILLED<br/>
+2. convertToIssue : removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getPackageName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        final String packageName = getPackageName(scope);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_55'/>
+55
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_55'>1</a>
+<span>
+1. convertToIssue : replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::convertToIssue &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return issueBuilder</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_56'/>
+56
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_56'>2</a>
+<span>
+1. convertToIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED<br/>
+2. convertToIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setFileName(enrichedFileName)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_57'/>
+57
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_57'>2</a>
+<span>
+1. convertToIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED<br/>
+2. convertToIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setLineStart(line)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_58'/>
+58
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_58'>3</a>
+<span>
+1. convertToIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED<br/>
+2. convertToIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED<br/>
+3. convertToIssue : removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::mapSeverity &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setSeverity(mapSeverity(severity))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_59'/>
+59
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_59'>2</a>
+<span>
+1. convertToIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED<br/>
+2. convertToIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setMessage(issueType)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_60'/>
+60
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_60'>2</a>
+<span>
+1. convertToIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setPackageName with receiver &rarr; KILLED<br/>
+2. convertToIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setPackageName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setPackageName(packageName)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_61'/>
+61
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_61'>2</a>
+<span>
+1. convertToIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setType &rarr; KILLED<br/>
+2. convertToIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setType with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setType(title)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_62'/>
+62
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_62'>2</a>
+<span>
+1. convertToIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED<br/>
+2. convertToIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setCategory(issueTypeId)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_63'/>
+63
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_63'>4</a>
+<span>
+1. convertToIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setDescription with receiver &rarr; SURVIVED<br/>
+2. convertToIssue : removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::formatDescription &rarr; SURVIVED<br/>
+3. convertToIssue : replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::formatDescription with argument &rarr; SURVIVED<br/>
+4. convertToIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setDescription &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                .setDescription(formatDescription(enrichedFileName, finding))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_64'/>
+64
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_64'>1</a>
+<span>
+1. convertToIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::buildAndClean &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .buildAndClean();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Prepends .java files with src/main/java so that they can be correctly linked to source code files in Jenkins UI.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Otherwise, files are returned as is.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * The solution does not cater for all scenarios but should be sufficient for most common use case (Java/Kotlin project</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * with Maven folder structure).</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_72'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param rawFileName</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         file name reported by Veracode</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return original file name or a java file name prepended with src/main/java</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String getEnrichedFileName(final String rawFileName) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_79'/>
+79
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_79'>8</a>
+<span>
+1. getEnrichedFileName : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. getEnrichedFileName : removed call to org/apache/commons/lang3/StringUtils::startsWith &rarr; KILLED<br/>
+3. getEnrichedFileName : negated conditional &rarr; KILLED<br/>
+4. getEnrichedFileName : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+5. getEnrichedFileName : removed call to org/apache/commons/lang3/StringUtils::endsWith &rarr; KILLED<br/>
+6. getEnrichedFileName : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+7. getEnrichedFileName : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+8. getEnrichedFileName : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (endsWith(rawFileName, &#34;.java&#34;) &#38;&#38; !startsWith(rawFileName, &#34;src/main/java/&#34;)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_80'/>
+80
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_80'>1</a>
+<span>
+1. getEnrichedFileName : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getEnrichedFileName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return &#34;src/main/java/&#34; + rawFileName;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_82'/>
+82
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_82'>8</a>
+<span>
+1. getEnrichedFileName : removed conditional - replaced equality check with true &rarr; SURVIVED<br/>
+2. getEnrichedFileName : removed call to org/apache/commons/lang3/StringUtils::startsWith &rarr; SURVIVED<br/>
+3. getEnrichedFileName : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. getEnrichedFileName : negated conditional &rarr; KILLED<br/>
+5. getEnrichedFileName : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+6. getEnrichedFileName : removed call to org/apache/commons/lang3/StringUtils::endsWith &rarr; KILLED<br/>
+7. getEnrichedFileName : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+8. getEnrichedFileName : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        else if (endsWith(rawFileName, &#34;.kt&#34;) &#38;&#38; !startsWith(rawFileName, &#34;src/main/kotlin/&#34;)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_83'/>
+83
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_83'>1</a>
+<span>
+1. getEnrichedFileName : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getEnrichedFileName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return &#34;src/main/kotlin/&#34; + rawFileName;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        else {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_86'/>
+86
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_86'>1</a>
+<span>
+1. getEnrichedFileName : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getEnrichedFileName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return rawFileName;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String getPackageName(final String scope) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_91'/>
+91
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_91'>4</a>
+<span>
+1. getPackageName : negated conditional &rarr; KILLED<br/>
+2. getPackageName : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. getPackageName : removed call to java/lang/String::contains &rarr; KILLED<br/>
+4. getPackageName : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (scope.contains(&#34;.&#34;)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_92'/>
+92
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_92'>3</a>
+<span>
+1. getPackageName : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getPackageName &rarr; KILLED<br/>
+2. getPackageName : replaced call to org/apache/commons/lang3/StringUtils::substringBeforeLast with argument &rarr; KILLED<br/>
+3. getPackageName : removed call to org/apache/commons/lang3/StringUtils::substringBeforeLast &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return StringUtils.substringBeforeLast(scope, &#34;.&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        else {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_95'/>
+95
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_95'>1</a>
+<span>
+1. getPackageName : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getPackageName &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            return VALUE_NOT_SET;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_96'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_98'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_99'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_100'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Retrieve source file values in a null safe manner.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Veracode has nested json objects representing a source file ( files -&#62; source_file -&#62; values) for which we need</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_102'/>
+102
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_102'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * to do null checking.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_104'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param finding</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_105'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         contains top level vulnerability information.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_106'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param key</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_107'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         used to retrieve values from nested source file.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_108'/>
+108
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_108'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param altValue</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_109'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         in case there is a missing source file.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_110'/>
+110
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_110'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param &#60;T&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         type of the return value.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return field value of the source file.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_114'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_115'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private &#60;T&#62; T getSourceFileField(final JSONObject finding, final String key, final T altValue) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_116'/>
+116
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_116'>2</a>
+<span>
+1. getSourceFileField : removed call to org/json/JSONObject::optJSONObject &rarr; KILLED<br/>
+2. getSourceFileField : replaced call to org/json/JSONObject::optJSONObject with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        final JSONObject files = finding.optJSONObject(&#34;files&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_117'/>
+117
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_117'>3</a>
+<span>
+1. getSourceFileField : negated conditional &rarr; KILLED<br/>
+2. getSourceFileField : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. getSourceFileField : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (files != null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_118'/>
+118
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_118'>2</a>
+<span>
+1. getSourceFileField : replaced call to org/json/JSONObject::optJSONObject with receiver &rarr; KILLED<br/>
+2. getSourceFileField : removed call to org/json/JSONObject::optJSONObject &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            final JSONObject sourceFile = files.optJSONObject(&#34;source_file&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_119'/>
+119
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_119'>3</a>
+<span>
+1. getSourceFileField : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. getSourceFileField : negated conditional &rarr; KILLED<br/>
+3. getSourceFileField : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            if (sourceFile != null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_120'/>
+120
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_120'>2</a>
+<span>
+1. getSourceFileField : removed call to org/json/JSONObject::get &rarr; KILLED<br/>
+2. getSourceFileField : replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return (T) sourceFile.get(key);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_122'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_123'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_124'/>
+124
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_124'>1</a>
+<span>
+1. getSourceFileField : replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return altValue;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_125'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_126'/>
+126
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_126'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_127'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_128'/>
+128
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_128'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Map veracode severity to analysis-model severity.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_129'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * See &#60;a href=&#34;https://docs.veracode.com/r/review_severity_exploitability&#34;&#62;Veracode severity table&#60;/a&#62; for details</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_130'/>
+130
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_130'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * on scoring.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_131'/>
+131
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_131'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_132'/>
+132
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_132'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param severity</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_133'/>
+133
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_133'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         as an integer from 0 to 5 (inclusive).</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_134'/>
+134
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_134'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_135'/>
+135
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_135'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return {@link Severity}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_136'/>
+136
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_136'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_137'/>
+137
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_137'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private Severity mapSeverity(final int severity) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_138'/>
+138
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_138'>5</a>
+<span>
+1. mapSeverity : changed conditional boundary &rarr; KILLED<br/>
+2. mapSeverity : removed conditional - replaced comparison check with false &rarr; KILLED<br/>
+3. mapSeverity : Substituted 2 with 3 &rarr; KILLED<br/>
+4. mapSeverity : removed conditional - replaced comparison check with true &rarr; KILLED<br/>
+5. mapSeverity : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (severity &#60;= VERACODE_LOW_THRESHOLD) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_139'/>
+139
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_139'>1</a>
+<span>
+1. mapSeverity : replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::mapSeverity &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return Severity.WARNING_LOW;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_140'/>
+140
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_140'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_141'/>
+141
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_141'>5</a>
+<span>
+1. mapSeverity : removed conditional - replaced comparison check with false &rarr; KILLED<br/>
+2. mapSeverity : removed conditional - replaced comparison check with true &rarr; KILLED<br/>
+3. mapSeverity : negated conditional &rarr; KILLED<br/>
+4. mapSeverity : changed conditional boundary &rarr; KILLED<br/>
+5. mapSeverity : Substituted 4 with 5 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        else if (severity &#62;= VERACODE_HIGH_THRESHOLD) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_142'/>
+142
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_142'>1</a>
+<span>
+1. mapSeverity : replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::mapSeverity &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return Severity.WARNING_HIGH;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_143'/>
+143
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_143'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_144'/>
+144
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_144'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        else {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_145'/>
+145
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_145'>1</a>
+<span>
+1. mapSeverity : replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::mapSeverity &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            return Severity.WARNING_NORMAL;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_146'/>
+146
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_146'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_147'/>
+147
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_147'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_148'/>
+148
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_148'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_149'/>
+149
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_149'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_150'/>
+150
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_150'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String formatDescription(final String fileName, final JSONObject finding) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_151'/>
+151
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_151'>2</a>
+<span>
+1. formatDescription : removed call to org/json/JSONObject::optString &rarr; SURVIVED<br/>
+2. formatDescription : replaced call to org/json/JSONObject::optString with argument &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        final String cweId = finding.optString(&#34;cwe_id&#34;, VALUE_NOT_SET);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_152'/>
+152
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_152'>2</a>
+<span>
+1. formatDescription : replaced call to org/json/JSONObject::optString with argument &rarr; SURVIVED<br/>
+2. formatDescription : removed call to org/json/JSONObject::optString &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        final String flawLink = finding.optString(&#34;flaw_details_link&#34;, VALUE_NOT_SET);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_153'/>
+153
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_153'>2</a>
+<span>
+1. formatDescription : replaced call to org/json/JSONObject::optString with argument &rarr; SURVIVED<br/>
+2. formatDescription : removed call to org/json/JSONObject::optString &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        final String severity = finding.optString(&#34;severity&#34;, VALUE_NOT_SET);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_154'/>
+154
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_154'>2</a>
+<span>
+1. formatDescription : replaced call to org/json/JSONObject::optString with argument &rarr; SURVIVED<br/>
+2. formatDescription : removed call to org/json/JSONObject::optString &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        final String displayHtml = finding.optString(&#34;display_text&#34;, VALUE_NOT_SET);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_155'/>
+155
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_155'>13</a>
+<span>
+1. formatDescription : Substituted 1 with 0 &rarr; SURVIVED<br/>
+2. formatDescription : Substituted 0 with 1 &rarr; SURVIVED<br/>
+3. formatDescription : Substituted 2 with 3 &rarr; SURVIVED<br/>
+4. formatDescription : Substituted 1 with 0 &rarr; SURVIVED<br/>
+5. formatDescription : removed call to j2html/TagCreator::b &rarr; SURVIVED<br/>
+6. formatDescription : Substituted 2 with 3 &rarr; SURVIVED<br/>
+7. formatDescription : removed call to j2html/TagCreator::div &rarr; SURVIVED<br/>
+8. formatDescription : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::formatDescription &rarr; SURVIVED<br/>
+9. formatDescription : Substituted 0 with 1 &rarr; SURVIVED<br/>
+10. formatDescription : removed call to j2html/TagCreator::text &rarr; SURVIVED<br/>
+11. formatDescription : Substituted 5 with 6 &rarr; SURVIVED<br/>
+12. formatDescription : Substituted 0 with 1 &rarr; SURVIVED<br/>
+13. formatDescription : removed call to j2html/TagCreator::join &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return join(div(b(&#34;Resource: &#34;), text(fileName)),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_156'/>
+156
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_156'>7</a>
+<span>
+1. formatDescription : removed call to j2html/TagCreator::b &rarr; SURVIVED<br/>
+2. formatDescription : Substituted 2 with 3 &rarr; SURVIVED<br/>
+3. formatDescription : removed call to j2html/TagCreator::div &rarr; SURVIVED<br/>
+4. formatDescription : removed call to j2html/TagCreator::text &rarr; SURVIVED<br/>
+5. formatDescription : Substituted 0 with 1 &rarr; SURVIVED<br/>
+6. formatDescription : Substituted 2 with 3 &rarr; SURVIVED<br/>
+7. formatDescription : Substituted 1 with 0 &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                div(b(&#34;CWE Id: &#34;), text(cweId)),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_157'/>
+157
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_157'>7</a>
+<span>
+1. formatDescription : removed call to j2html/TagCreator::div &rarr; SURVIVED<br/>
+2. formatDescription : removed call to j2html/TagCreator::text &rarr; SURVIVED<br/>
+3. formatDescription : Substituted 0 with 1 &rarr; SURVIVED<br/>
+4. formatDescription : Substituted 1 with 0 &rarr; SURVIVED<br/>
+5. formatDescription : removed call to j2html/TagCreator::b &rarr; SURVIVED<br/>
+6. formatDescription : Substituted 3 with 4 &rarr; SURVIVED<br/>
+7. formatDescription : Substituted 2 with 3 &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                div(b(&#34;Flaw Details: &#34;), text(flawLink)),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_158'/>
+158
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_158'>7</a>
+<span>
+1. formatDescription : removed call to j2html/TagCreator::text &rarr; SURVIVED<br/>
+2. formatDescription : Substituted 1 with 0 &rarr; SURVIVED<br/>
+3. formatDescription : removed call to j2html/TagCreator::b &rarr; SURVIVED<br/>
+4. formatDescription : removed call to j2html/TagCreator::div &rarr; SURVIVED<br/>
+5. formatDescription : Substituted 0 with 1 &rarr; KILLED<br/>
+6. formatDescription : Substituted 4 with 5 &rarr; KILLED<br/>
+7. formatDescription : Substituted 1 with 0 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                div(b(&#34;Severity: &#34;), text(severity)),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_159'/>
+159
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_159'>3</a>
+<span>
+1. formatDescription : removed call to j2html/TagCreator::p &rarr; SURVIVED<br/>
+2. formatDescription : removed call to j2html/TagCreator::rawHtml &rarr; SURVIVED<br/>
+3. formatDescription : removed call to j2html/tags/UnescapedText::render &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                p(rawHtml(displayHtml))).render();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_160'/>
+160
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_160'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_161'/>
+161
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_161'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@229686ac_162'/>
+162
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_162'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_29'>29</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_29'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseJsonObject<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/json/JSONObject::optJSONArray &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_30'>30</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_30'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseJsonObject<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldHandleEmptyResultsJenkins67296()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseJsonObject<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldHandleEmptyResultsJenkins67296()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseJsonObject<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_31'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseJsonObject<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::parseFindings &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_36'>36</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_36'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> changed conditional boundary &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced comparison check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/json/JSONArray::length &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced comparison check with false &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_37'>37</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_37'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/json/JSONArray::get &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_38'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with true &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_40'>40</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_40'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/Report::add with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::convertToIssue &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseFindings<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/Report::add &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_46'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_47'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getEnrichedFileName with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getEnrichedFileName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_48'>48</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_48'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/lang/Integer::valueOf &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/lang/Integer::intValue &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_49'>49</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_49'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/json/JSONObject::getInt &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_50'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to org/json/JSONObject::getString with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/json/JSONObject::getString &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_51'>51</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_51'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to org/json/JSONObject::getString with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/json/JSONObject::getString &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_52'>52</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_52'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/json/JSONObject::getString &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to org/json/JSONObject::getString with argument &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_53'>53</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_53'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField with argument &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_54'>54</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_54'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getPackageName with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getPackageName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_55'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::convertToIssue &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_56'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_57'>57</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_57'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_58'>58</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_58'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::mapSeverity &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_59'>59</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_59'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_60'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setPackageName with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setPackageName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_61'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setType &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setType with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_62'>62</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_62'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_63'>63</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_63'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>none</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setDescription with receiver &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setDescription &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::formatDescription &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>none</span></span> replaced call to edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::formatDescription with argument &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_64'>64</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_64'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertToIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::buildAndClean &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_79'>79</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_79'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/apache/commons/lang3/StringUtils::startsWith &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/apache/commons/lang3/StringUtils::endsWith &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_80'>80</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_80'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getEnrichedFileName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_82'>82</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_82'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with true &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/apache/commons/lang3/StringUtils::endsWith &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>none</span></span> removed call to org/apache/commons/lang3/StringUtils::startsWith &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_83'>83</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_83'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getEnrichedFileName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_86'>86</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_86'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getEnrichedFileName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getEnrichedFileName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_91'>91</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_91'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPackageName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getPackageName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getPackageName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/lang/String::contains &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>getPackageName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_92'>92</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_92'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPackageName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getPackageName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getPackageName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to org/apache/commons/lang3/StringUtils::substringBeforeLast with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getPackageName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/apache/commons/lang3/StringUtils::substringBeforeLast &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_95'>95</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_95'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getPackageName<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getPackageName &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_116'>116</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_116'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/json/JSONObject::optJSONObject &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to org/json/JSONObject::optJSONObject with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_117'>117</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_117'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_118'>118</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_118'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to org/json/JSONObject::optJSONObject with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/json/JSONObject::optJSONObject &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_119'>119</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_119'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_120'>120</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_120'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/json/JSONObject::get &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_124'>124</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_124'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSourceFileField<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::getSourceFileField &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_138'>138</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_138'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> changed conditional boundary &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced comparison check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 2 with 3 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced comparison check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_139'>139</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_139'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::mapSeverity &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_141'>141</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_141'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced comparison check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced comparison check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> changed conditional boundary &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 4 with 5 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_142'>142</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_142'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::mapSeverity &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_145'>145</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_145'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapSeverity<br/><b>Killed by : </b>none</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::mapSeverity &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_151'>151</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_151'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to org/json/JSONObject::optString &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> replaced call to org/json/JSONObject::optString with argument &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_152'>152</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_152'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> replaced call to org/json/JSONObject::optString with argument &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to org/json/JSONObject::optString &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_153'>153</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_153'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> replaced call to org/json/JSONObject::optString with argument &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to org/json/JSONObject::optString &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_154'>154</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_154'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> replaced call to org/json/JSONObject::optString with argument &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to org/json/JSONObject::optString &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_155'>155</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_155'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 1 with 0 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 0 with 1 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 2 with 3 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 1 with 0 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::b &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 2 with 3 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::div &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/VeraCodePipelineScannerParser::formatDescription &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>9.<span><b>9</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 0 with 1 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>10.<span><b>10</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::text &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>11.<span><b>11</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 5 with 6 &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>12.<span><b>12</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to j2html/TagCreator::join &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>13.<span><b>13</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 0 with 1 &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_156'>156</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_156'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::b &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 2 with 3 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::div &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::text &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 0 with 1 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 2 with 3 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 1 with 0 &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_157'>157</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_157'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::div &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::text &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 0 with 1 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 1 with 0 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::b &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 3 with 4 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 2 with 3 &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_158'>158</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_158'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::text &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 4 with 5 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> Substituted 1 with 0 &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::b &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::div &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@229686ac_159'>159</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@229686ac_159'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::p &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/TagCreator::rawHtml &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>formatDescription<br/><b>Killed by : </b>none</span></span> removed call to j2html/tags/UnescapedText::render &rarr; SURVIVED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>CONSTRUCTOR_CALLS</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>EXPERIMENTAL_ARGUMENT_PROPAGATION</li>
+<li class='mutator'>EXPERIMENTAL_BIG_DECIMAL</li>
+<li class='mutator'>EXPERIMENTAL_BIG_INTEGER</li>
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE</li>
+<li class='mutator'>EXPERIMENTAL_NAKED_RECEIVER</li>
+<li class='mutator'>EXPERIMENTAL_REMOVE_SWITCH_MUTATOR_[0-99]</li>
+<li class='mutator'>EXPERIMENTAL_SWITCH</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INLINE_CONSTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NON_VOID_METHOD_CALLS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_IF</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_IF</li>
+<li class='mutator'>REMOVE_INCREMENTS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldHandleEmptyResultsJenkins67296()] (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.15.1
+
+</body>
+</html>

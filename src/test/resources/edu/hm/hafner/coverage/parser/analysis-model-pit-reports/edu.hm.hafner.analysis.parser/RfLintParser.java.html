@@ -1,0 +1,3555 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>RfLintParser.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package edu.hm.hafner.analysis.parser;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.nio.file.Paths;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Objects;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.regex.Matcher;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.regex.Pattern;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.stream.Stream;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.lang3.EnumUtils;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.lang3.StringUtils;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.text.CaseUtils;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Issue;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.IssueBuilder;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.IssueParser;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.ParsingCanceledException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.ReaderFactory;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Report;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Severity;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import static edu.hm.hafner.analysis.Categories.*;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * A parser for &#60;a href=&#34;http://robotframework.org/&#34;&#62;Robot Framework&#60;/a&#62;. Parses output from &#60;a</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * href=&#34;https://github.com/boakley/robotframework-lint&#34;&#62;robotframework-lint&#60;/a&#62;.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * To generate rflint file use:</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * {@code</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;pre&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *     cmd$ pip install robotframework-lint</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *     cmd$ rflint path/to/test.robot</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * &#60;/pre&#62;}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @author traitanit</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @author Bassam Khouri</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public class RfLintParser extends IssueParser {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Map of Robot Framework severity to the analysis model severity.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private enum RfLintSeverity {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        ERROR(Severity.WARNING_HIGH),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        E(ERROR),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        WARNING(Severity.WARNING_NORMAL),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        W(WARNING),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        IGNORE(Severity.WARNING_LOW),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        I(IGNORE);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        private final Severity severityLevel;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        RfLintSeverity(final Severity level) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            severityLevel = level;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        RfLintSeverity(final RfLintSeverity e) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            this(e.severityLevel);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        public Severity getSeverityLevel() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_59'/>
+59
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_59'>1</a>
+<span>
+1. getSeverityLevel : replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::getSeverityLevel &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return severityLevel;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         * Determines the RfLintSeverity based on the provided character.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         * @param violationSeverity</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         *         The character presentiting the violation severity</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         * @return An instance of RfLintSeverity matching the character. `WARNING` as the default if the severity</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         *         character is not valid.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        public static RfLintSeverity fromCharacter(final char violationSeverity) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_72'/>
+72
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_72'>5</a>
+<span>
+1. fromCharacter : removed conditional - replaced equality check with true &rarr; SURVIVED<br/>
+2. fromCharacter : removed call to java/lang/String::valueOf &rarr; KILLED<br/>
+3. fromCharacter : negated conditional &rarr; KILLED<br/>
+4. fromCharacter : removed call to org/apache/commons/lang3/EnumUtils::isValidEnum &rarr; KILLED<br/>
+5. fromCharacter : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            if (EnumUtils.isValidEnum(RfLintSeverity.class, String.valueOf(violationSeverity))) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_73'/>
+73
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_73'>3</a>
+<span>
+1. fromCharacter : replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::fromCharacter &rarr; KILLED<br/>
+2. fromCharacter : removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::valueOf &rarr; KILLED<br/>
+3. fromCharacter : removed call to java/lang/String::valueOf &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return RfLintSeverity.valueOf(String.valueOf(violationSeverity));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_75'/>
+75
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_75'>1</a>
+<span>
+1. fromCharacter : replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::fromCharacter &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            return WARNING;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * The possible categories.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private enum RfLintCategory {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        SUITE(&#34;Suite&#34;),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        KEYWORD(&#34;Keyword&#34;),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        TEST_CASE(&#34;Test Case&#34;),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        OTHER(&#34;Other&#34;),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        CUSTOM(&#34;Custom&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        private final String name;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        RfLintCategory(final String name) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_92'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            this.name = name;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_95'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        public String getName() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_96'/>
+96
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_96'>1</a>
+<span>
+1. getName : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/RfLintParser$RfLintCategory::getName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return name;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_98'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_99'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_100'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * The list of the rule names built into rflint.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_102'/>
+102
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_102'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private enum RfLintRuleName {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_104'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        DUPLICATE_KEYWORD_NAMES(RfLintCategory.SUITE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_105'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        DUPLICATE_TEST_NAMES(RfLintCategory.SUITE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_106'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        FILE_TOO_LONG(RfLintCategory.OTHER),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_107'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        INVALID_TABLE(RfLintCategory.SUITE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_108'/>
+108
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_108'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        LINE_TOO_LONG(RfLintCategory.OTHER),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_109'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        PERIOD_IN_SUITE_NAME(RfLintCategory.SUITE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_110'/>
+110
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_110'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        PERIOD_IN_TEST_NAME(RfLintCategory.TEST_CASE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        REQUIRE_KEYWORD_DOCUMENTATION(RfLintCategory.KEYWORD),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        REQUIRE_SUITE_DOCUMENTATION(RfLintCategory.SUITE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        REQUIRE_TEST_DOCUMENTATION(RfLintCategory.SUITE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_114'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        TAG_WITH_SPACES(RfLintCategory.TEST_CASE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_115'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        TOO_FEW_KEYWORD_STEPS(RfLintCategory.KEYWORD),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_116'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        TOO_MANY_TEST_CASES(RfLintCategory.SUITE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_117'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        TOO_FEW_TEST_STEPS(RfLintCategory.TEST_CASE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_118'/>
+118
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_118'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        TOO_MANY_TEST_STEPS(RfLintCategory.TEST_CASE),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_119'/>
+119
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_119'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        TRAILING_BLANK_LINES(RfLintCategory.OTHER),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_120'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        TRAILING_WHITESPACE(RfLintCategory.OTHER),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        UNKNOWN(RfLintCategory.CUSTOM);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_122'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_123'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        private static final boolean CAPITALIZE_FIRST_LETTER = true;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_124'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        private final RfLintCategory category;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_125'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_126'/>
+126
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_126'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        RfLintRuleName(final RfLintCategory category) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_127'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            this.category = category;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_128'/>
+128
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_128'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_129'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_130'/>
+130
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_130'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        public RfLintCategory getCategory() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_131'/>
+131
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_131'>1</a>
+<span>
+1. getCategory : replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::getCategory &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return category;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_132'/>
+132
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_132'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_133'/>
+133
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_133'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_134'/>
+134
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_134'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_135'/>
+135
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_135'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         * Determines the RfLintRuleName based on the provided name.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_136'/>
+136
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_136'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_137'/>
+137
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_137'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         * @param name</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_138'/>
+138
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_138'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         *         the name of the rule</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_139'/>
+139
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_139'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_140'/>
+140
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_140'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         * @return An instance of RfLintRuleName matching the name. `UNKNOWN` as the default if the name is not valid.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_141'/>
+141
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_141'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>         */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_142'/>
+142
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_142'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        public static RfLintRuleName fromName(final String name) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_143'/>
+143
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_143'>1</a>
+<span>
+1. fromName : removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::values &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            for (RfLintRuleName rule : values()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_144'/>
+144
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_144'>11</a>
+<span>
+1. fromName : Substituted 95 with 96 &rarr; KILLED<br/>
+2. fromName : Substituted 1 with 0 &rarr; KILLED<br/>
+3. fromName : removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::name &rarr; KILLED<br/>
+4. fromName : negated conditional &rarr; KILLED<br/>
+5. fromName : removed call to org/apache/commons/text/CaseUtils::toCamelCase &rarr; KILLED<br/>
+6. fromName : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+7. fromName : replaced call to org/apache/commons/text/CaseUtils::toCamelCase with argument &rarr; KILLED<br/>
+8. fromName : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+9. fromName : Substituted 0 with 1 &rarr; KILLED<br/>
+10. fromName : Substituted 1 with 0 &rarr; KILLED<br/>
+11. fromName : removed call to java/lang/String::equals &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                if (CaseUtils.toCamelCase(rule.name(), CAPITALIZE_FIRST_LETTER, &#39;_&#39;).equals(name)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_145'/>
+145
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_145'>1</a>
+<span>
+1. fromName : replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::fromName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    return rule;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_146'/>
+146
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_146'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_147'/>
+147
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_147'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_148'/>
+148
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_148'>1</a>
+<span>
+1. fromName : replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::fromName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return UNKNOWN;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_149'/>
+149
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_149'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_150'/>
+150
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_150'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_151'/>
+151
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_151'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_152'/>
+152
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_152'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final long serialVersionUID = -7903991158616386226L;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_153'/>
+153
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_153'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_154'/>
+154
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_154'>1</a>
+<span>
+1. &#60;init&#62; : Removed assignment to member variable fileName &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>    private String fileName = StringUtils.EMPTY;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_155'/>
+155
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_155'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private static final Pattern WARNING_PATTERN = Pattern.compile(</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_156'/>
+156
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_156'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            &#34;(?&#60;severity&#62;[WEI]): (?&#60;lineNumber&#62;\\d+), (?&#60;columnNumber&#62;\\d+): (?&#60;message&#62;.*) \\((?&#60;ruleName&#62;.*)\\)&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_157'/>
+157
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_157'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private static final Pattern FILE_PATTERN = Pattern.compile(&#34;\\+\\s(?&#60;filename&#62;.*)&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_158'/>
+158
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_158'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_159'/>
+159
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_159'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_160'/>
+160
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_160'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Report parse(final ReaderFactory readerFactory) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_161'/>
+161
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_161'>2</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/ReaderFactory::readStream &rarr; KILLED<br/>
+2. parse : removed call to edu/hm/hafner/analysis/IssueBuilder::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        try (Stream&#60;String&#62; lines = readerFactory.readStream(); IssueBuilder builder = new IssueBuilder()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_162'/>
+162
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_162'>1</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/Report::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            Report warnings = new Report();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_163'/>
+163
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_163'>2</a>
+<span>
+1. lambda$parse$0 : removed call to edu/hm/hafner/analysis/parser/RfLintParser::parseLine &rarr; KILLED<br/>
+2. parse : removed call to java/util/stream/Stream::forEach &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            lines.forEach(line -&#62; parseLine(builder, warnings, line));</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_164'/>
+164
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_164'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            return warnings;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_165'/>
+165
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_165'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_166'/>
+166
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_166'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_167'/>
+167
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_167'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_168'/>
+168
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_168'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private void parseLine(final IssueBuilder builder, final Report warnings, final String line) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_169'/>
+169
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_169'>1</a>
+<span>
+1. parseLine : removed call to java/util/regex/Pattern::matcher &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        Matcher fileMatcher = FILE_PATTERN.matcher(line);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_170'/>
+170
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_170'>4</a>
+<span>
+1. parseLine : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. parseLine : removed call to java/util/regex/Matcher::find &rarr; KILLED<br/>
+3. parseLine : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+4. parseLine : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (fileMatcher.find()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_171'/>
+171
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_171'>3</a>
+<span>
+1. parseLine : Substituted 1 with 0 &rarr; KILLED<br/>
+2. parseLine : Removed assignment to member variable fileName &rarr; KILLED<br/>
+3. parseLine : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            fileName = fileMatcher.group(1);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_172'/>
+172
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_172'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_173'/>
+173
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_173'>1</a>
+<span>
+1. parseLine : removed call to java/util/regex/Pattern::matcher &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        Matcher matcher = WARNING_PATTERN.matcher(line);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_174'/>
+174
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_174'>4</a>
+<span>
+1. parseLine : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+2. parseLine : negated conditional &rarr; KILLED<br/>
+3. parseLine : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. parseLine : removed call to java/util/regex/Matcher::find &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (matcher.find()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_175'/>
+175
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_175'>3</a>
+<span>
+1. parseLine : replaced call to edu/hm/hafner/analysis/Report::add with receiver &rarr; KILLED<br/>
+2. parseLine : removed call to edu/hm/hafner/analysis/Report::add &rarr; KILLED<br/>
+3. parseLine : removed call to edu/hm/hafner/analysis/parser/RfLintParser::createIssue &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            warnings.add(createIssue(matcher, builder));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_176'/>
+176
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_176'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_177'/>
+177
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_177'>4</a>
+<span>
+1. parseLine : removed conditional - replaced equality check with false &rarr; SURVIVED<br/>
+2. parseLine : removed call to java/lang/Thread::interrupted &rarr; SURVIVED<br/>
+3. parseLine : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+4. parseLine : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (Thread.interrupted()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_178'/>
+178
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_178'>1</a>
+<span>
+1. parseLine : removed call to edu/hm/hafner/analysis/ParsingCanceledException::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            throw new ParsingCanceledException();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_179'/>
+179
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_179'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_180'/>
+180
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_180'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_181'/>
+181
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_181'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_182'/>
+182
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_182'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private Issue createIssue(final Matcher matcher, final IssueBuilder builder) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_183'/>
+183
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_183'>2</a>
+<span>
+1. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+2. createIssue : replaced call to java/util/regex/Matcher::group with argument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        String message = matcher.group(&#34;message&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_184'/>
+184
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_184'>4</a>
+<span>
+1. createIssue : replaced call to java/util/regex/Matcher::group with argument &rarr; KILLED<br/>
+2. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+3. createIssue : replaced call to edu/hm/hafner/analysis/Categories::guessCategoryIfEmpty with argument &rarr; KILLED<br/>
+4. createIssue : removed call to edu/hm/hafner/analysis/Categories::guessCategoryIfEmpty &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        String severityStr = guessCategoryIfEmpty(matcher.group(&#34;severity&#34;), message);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_185'/>
+185
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_185'>4</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::getSeverityLevel &rarr; KILLED<br/>
+2. createIssue : Substituted 0 with 1 &rarr; KILLED<br/>
+3. createIssue : removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::fromCharacter &rarr; KILLED<br/>
+4. createIssue : removed call to java/lang/String::charAt &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        Severity priority = RfLintSeverity.fromCharacter(severityStr.charAt(0)).getSeverityLevel();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_186'/>
+186
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_186'>2</a>
+<span>
+1. createIssue : replaced call to java/util/regex/Matcher::group with argument &rarr; KILLED<br/>
+2. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        String ruleName = matcher.group(&#34;ruleName&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_187'/>
+187
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_187'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_188'/>
+188
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_188'>2</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::getCategory &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::fromName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        RfLintCategory category = RfLintRuleName.fromName(ruleName).getCategory();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_189'/>
+189
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_189'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_190'/>
+190
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_190'>4</a>
+<span>
+1. createIssue : Substituted 0 with 1 &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED<br/>
+3. createIssue : replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser::createIssue &rarr; KILLED<br/>
+4. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return builder.setFileName(fileName)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_191'/>
+191
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_191'>6</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setPackageName &rarr; KILLED<br/>
+2. createIssue : removed call to java/util/Objects::toString &rarr; KILLED<br/>
+3. createIssue : replaced call to java/nio/file/Path::getParent with receiver &rarr; KILLED<br/>
+4. createIssue : removed call to java/nio/file/Path::getParent &rarr; KILLED<br/>
+5. createIssue : removed call to java/nio/file/Paths::get &rarr; KILLED<br/>
+6. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setPackageName with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setPackageName(Objects.toString(Paths.get(fileName).getParent()))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_192'/>
+192
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_192'>4</a>
+<span>
+1. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED<br/>
+3. createIssue : replaced call to java/util/regex/Matcher::group with argument &rarr; KILLED<br/>
+4. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setLineStart(matcher.group(&#34;lineNumber&#34;))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_193'/>
+193
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_193'>4</a>
+<span>
+1. createIssue : replaced call to java/util/regex/Matcher::group with argument &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setColumnStart &rarr; KILLED<br/>
+3. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+4. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setColumnStart with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setColumnStart(matcher.group(&#34;columnNumber&#34;))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_194'/>
+194
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_194'>3</a>
+<span>
+1. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintCategory::getName &rarr; KILLED<br/>
+3. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setCategory(category.getName())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_195'/>
+195
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_195'>2</a>
+<span>
+1. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setType with receiver &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setType &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setType(ruleName)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_196'/>
+196
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_196'>2</a>
+<span>
+1. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setMessage(message)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_197'/>
+197
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_197'>2</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED<br/>
+2. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setSeverity(priority)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_198'/>
+198
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_198'>1</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::buildAndClean &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .buildAndClean();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_199'/>
+199
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_199'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@6939ce9c_200'/>
+200
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_200'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_59'>59</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_59'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getSeverityLevel<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::getSeverityLevel &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_72'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>fromCharacter<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/lang/String::valueOf &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>fromCharacter<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with true &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>fromCharacter<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>fromCharacter<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to org/apache/commons/lang3/EnumUtils::isValidEnum &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>fromCharacter<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_73'>73</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_73'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>fromCharacter<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::fromCharacter &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>fromCharacter<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::valueOf &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>fromCharacter<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> removed call to java/lang/String::valueOf &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_75'>75</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_75'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>fromCharacter<br/><b>Killed by : </b>none</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::fromCharacter &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_96'>96</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_96'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/RfLintParser$RfLintCategory::getName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_131'>131</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_131'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getCategory<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::getCategory &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_143'>143</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_143'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::values &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_144'>144</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_144'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 95 with 96 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::name &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> removed call to org/apache/commons/text/CaseUtils::toCamelCase &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to org/apache/commons/text/CaseUtils::toCamelCase with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>9.<span><b>9</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>10.<span><b>10</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>11.<span><b>11</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/lang/String::equals &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_145'>145</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_145'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::fromName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_148'>148</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_148'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>fromName<br/><b>Killed by : </b>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::fromName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_154'>154</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_154'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> Removed assignment to member variable fileName &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_161'>161</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_161'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldHandleEmptyFile()]</span></span> removed call to edu/hm/hafner/analysis/ReaderFactory::readStream &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldHandleEmptyFile()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_162'>162</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_162'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldHandleEmptyFile()]</span></span> removed call to edu/hm/hafner/analysis/Report::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_163'>163</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_163'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$parse$0<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/RfLintParser::parseLine &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/stream/Stream::forEach &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_169'>169</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_169'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/regex/Pattern::matcher &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_170'>170</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_170'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/regex/Matcher::find &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_171'>171</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_171'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> Removed assignment to member variable fileName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_173'>173</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_173'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/regex/Pattern::matcher &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_174'>174</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_174'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/regex/Matcher::find &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_175'>175</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_175'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/Report::add with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/Report::add &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/RfLintParser::createIssue &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_177'>177</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_177'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; SURVIVED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>none</span></span> removed call to java/lang/Thread::interrupted &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_178'>178</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_178'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseLine<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/ParsingCanceledException::&#60;init&#62; &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_183'>183</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_183'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to java/util/regex/Matcher::group with argument &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_184'>184</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_184'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to java/util/regex/Matcher::group with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/Categories::guessCategoryIfEmpty with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/Categories::guessCategoryIfEmpty &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_185'>185</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_185'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::getSeverityLevel &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintSeverity::fromCharacter &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/lang/String::charAt &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_186'>186</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_186'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to java/util/regex/Matcher::group with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_188'>188</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_188'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::getCategory &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintRuleName::fromName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_190'>190</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_190'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/RfLintParser::createIssue &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_191'>191</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_191'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setPackageName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/Objects::toString &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to java/nio/file/Path::getParent with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/nio/file/Path::getParent &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/nio/file/Paths::get &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setPackageName with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_192'>192</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_192'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to java/util/regex/Matcher::group with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_193'>193</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_193'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to java/util/regex/Matcher::group with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setColumnStart &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setColumnStart with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_194'>194</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_194'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/RfLintParser$RfLintCategory::getName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_195'>195</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_195'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setType with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setType &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_196'>196</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_196'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_197'>197</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_197'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@6939ce9c_198'>198</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@6939ce9c_198'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::buildAndClean &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>CONSTRUCTOR_CALLS</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>EXPERIMENTAL_ARGUMENT_PROPAGATION</li>
+<li class='mutator'>EXPERIMENTAL_BIG_DECIMAL</li>
+<li class='mutator'>EXPERIMENTAL_BIG_INTEGER</li>
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE</li>
+<li class='mutator'>EXPERIMENTAL_NAKED_RECEIVER</li>
+<li class='mutator'>EXPERIMENTAL_REMOVE_SWITCH_MUTATOR_[0-99]</li>
+<li class='mutator'>EXPERIMENTAL_SWITCH</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INLINE_CONSTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NON_VOID_METHOD_CALLS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_IF</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_IF</li>
+<li class='mutator'>REMOVE_INCREMENTS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()] (4 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllRfLintIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldBeSerializable()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldHandleEmptyFile()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParserRegistryTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParserRegistryTest]/[method:shouldFindSomeParsers()] (4 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.15.1
+
+</body>
+</html>

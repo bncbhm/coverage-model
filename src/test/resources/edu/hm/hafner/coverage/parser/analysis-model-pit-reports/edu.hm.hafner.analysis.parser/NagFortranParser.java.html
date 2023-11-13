@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>NagFortranParser.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package edu.hm.hafner.analysis.parser;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Optional;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.regex.Matcher;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Issue;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.IssueBuilder;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.LookaheadParser;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.ParsingException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Severity;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.util.IntegerParser;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.util.LookaheadStream;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * A parser for messages from the NAG Fortran Compiler.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @author Mat Cross.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class NagFortranParser extends LookaheadParser {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final long serialVersionUID = 2072414911276743946L;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final String NAGFOR_MSG_PATTERN = &#34;^(Info|Warning|Questionable|Extension|Obsolescent|Deleted &#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            + &#34;feature used|Error|Runtime Error|Fatal Error|Panic|Non-standard\\(Obsolete\\)|Extension\\(NAG\\)|Extension\\(F[0-9]+\\)): &#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            + &#34;(.+\\.[^,:\\n]+)(, line (\\d+))?: (.+(\\s+detected&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            + &#34; at .+)?)&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Creates a new instance of {@link NagFortranParser}.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public NagFortranParser() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        super(NAGFOR_MSG_PATTERN);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected Optional&#60;Issue&#62; createIssue(final Matcher matcher, final LookaheadStream lookahead,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            final IssueBuilder builder)</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            throws ParsingException {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_39'/>
+39
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_39'>3</a>
+<span>
+1. createIssue : Substituted 5 with 6 &rarr; KILLED<br/>
+2. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+3. createIssue : removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        StringBuilder messageBuilder = new StringBuilder(matcher.group(5));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_41'/>
+41
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_41'>4</a>
+<span>
+1. createIssue : negated conditional &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/util/LookaheadStream::hasNext &rarr; KILLED<br/>
+3. createIssue : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+4. createIssue : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        while (lookahead.hasNext(&#34;\\s+ .+&#34;)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_42'/>
+42
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_42'>2</a>
+<span>
+1. createIssue : replaced call to java/lang/StringBuilder::append with receiver &rarr; KILLED<br/>
+2. createIssue : removed call to java/lang/StringBuilder::append &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            messageBuilder.append(&#34;\n&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_43'/>
+43
+</td>
+<td class='uncertain'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_43'>3</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/util/LookaheadStream::next &rarr; TIMED_OUT<br/>
+2. createIssue : removed call to java/lang/StringBuilder::append &rarr; KILLED<br/>
+3. createIssue : replaced call to java/lang/StringBuilder::append with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='uncertain'>            messageBuilder.append(lookahead.next());</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_46'/>
+46
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_46'>6</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED<br/>
+2. createIssue : Substituted 4 with 5 &rarr; KILLED<br/>
+3. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+4. createIssue : replaced return value with Optional.empty for edu/hm/hafner/analysis/parser/NagFortranParser::createIssue &rarr; KILLED<br/>
+5. createIssue : Substituted 2 with 3 &rarr; KILLED<br/>
+6. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return builder.setFileName(matcher.group(2))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_47'/>
+47
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_47'>5</a>
+<span>
+1. createIssue : Substituted 1 with 0 &rarr; KILLED<br/>
+2. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED<br/>
+3. createIssue : removed call to edu/hm/hafner/analysis/util/IntegerParser::parseInt &rarr; KILLED<br/>
+4. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED<br/>
+5. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setLineStart(IntegerParser.parseInt(matcher.group(4)))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_48'/>
+48
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_48'>3</a>
+<span>
+1. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+2. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED<br/>
+3. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setCategory(matcher.group(1))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_49'/>
+49
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_49'>4</a>
+<span>
+1. createIssue : removed call to java/lang/StringBuilder::toString &rarr; KILLED<br/>
+2. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED<br/>
+3. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED<br/>
+4. createIssue : Substituted 1 with 0 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setMessage(messageBuilder.toString())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_50'/>
+50
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_50'>4</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/analysis/parser/NagFortranParser::mapPriority &rarr; KILLED<br/>
+2. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED<br/>
+3. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED<br/>
+4. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setSeverity(mapPriority(matcher.group(1)))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_51'/>
+51
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_51'>1</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::buildOptional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .buildOptional();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private Severity mapPriority(final String category) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_55'/>
+55
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_55'>6</a>
+<span>
+1. mapPriority : RemoveSwitch 4 (case value 4) &rarr; KILLED<br/>
+2. mapPriority : RemoveSwitch 0 (case value 0) &rarr; KILLED<br/>
+3. mapPriority : RemoveSwitch 1 (case value 1) &rarr; KILLED<br/>
+4. mapPriority : RemoveSwitch 2 (case value 2) &rarr; KILLED<br/>
+5. mapPriority : RemoveSwitch 3 (case value 3) &rarr; KILLED<br/>
+6. mapPriority : Changed switch default to be first case &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        switch (category) {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;Error&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;Runtime Error&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;Fatal Error&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;Panic&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_60'/>
+60
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_60'>1</a>
+<span>
+1. mapPriority : replaced return value with null for edu/hm/hafner/analysis/parser/NagFortranParser::mapPriority &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return Severity.WARNING_HIGH;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            case &#34;Info&#34;:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_62'/>
+62
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_62'>1</a>
+<span>
+1. mapPriority : replaced return value with null for edu/hm/hafner/analysis/parser/NagFortranParser::mapPriority &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                return Severity.WARNING_LOW;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            default:</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_64'/>
+64
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_64'>1</a>
+<span>
+1. mapPriority : replaced return value with null for edu/hm/hafner/analysis/parser/NagFortranParser::mapPriority &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                return Severity.WARNING_NORMAL;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@62d85699_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_39'>39</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_39'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> Substituted 5 with 6 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to java/lang/StringBuilder::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_41'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testFatalErrorParser()]</span></span> removed call to edu/hm/hafner/util/LookaheadStream::hasNext &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testFatalErrorParser()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_42'>42</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_42'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testFatalErrorParser()]</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testFatalErrorParser()]</span></span> removed call to java/lang/StringBuilder::append &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_43'>43</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_43'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testFatalErrorParser()]</span></span> removed call to java/lang/StringBuilder::append &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testFatalErrorParser()]</span></span> replaced call to java/lang/StringBuilder::append with receiver &rarr; KILLED</p> <p class='TIMED_OUT'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/util/LookaheadStream::next &rarr; TIMED_OUT</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_46'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> Substituted 4 with 5 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> replaced return value with Optional.empty for edu/hm/hafner/analysis/parser/NagFortranParser::createIssue &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> Substituted 2 with 3 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_47'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to edu/hm/hafner/analysis/util/IntegerParser::parseInt &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_48'>48</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_48'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_49'>49</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_49'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to java/lang/StringBuilder::toString &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testInfoParser()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_50'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testInfoParser()]</span></span> removed call to edu/hm/hafner/analysis/parser/NagFortranParser::mapPriority &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testInfoParser()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_51'>51</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_51'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::buildOptional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_55'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testInfoParser()]</span></span> RemoveSwitch 4 (case value 4) &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testErrorParser()]</span></span> RemoveSwitch 0 (case value 0) &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testRuntimeErrorParser()]</span></span> RemoveSwitch 1 (case value 1) &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testFatalErrorParser()]</span></span> RemoveSwitch 2 (case value 2) &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testPanicParser()]</span></span> RemoveSwitch 3 (case value 3) &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()]</span></span> Changed switch default to be first case &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_60'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testPanicParser()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/NagFortranParser::mapPriority &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_62'>62</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_62'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testInfoParser()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/NagFortranParser::mapPriority &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@62d85699_64'>64</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@62d85699_64'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>none</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/NagFortranParser::mapPriority &rarr; SURVIVED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>CONSTRUCTOR_CALLS</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>EXPERIMENTAL_ARGUMENT_PROPAGATION</li>
+<li class='mutator'>EXPERIMENTAL_BIG_DECIMAL</li>
+<li class='mutator'>EXPERIMENTAL_BIG_INTEGER</li>
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE</li>
+<li class='mutator'>EXPERIMENTAL_NAKED_RECEIVER</li>
+<li class='mutator'>EXPERIMENTAL_REMOVE_SWITCH_MUTATOR_[0-99]</li>
+<li class='mutator'>EXPERIMENTAL_SWITCH</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INLINE_CONSTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NON_VOID_METHOD_CALLS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_IF</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_IF</li>
+<li class='mutator'>REMOVE_INCREMENTS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionF2008Parser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testQuestionableParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testObsolescentParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testWarningParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionF2018Parser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testDeletedFeatureUsedParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testNonStandardObsoleteParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testInfoParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testPanicParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testRuntimeErrorParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testErrorParser()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testFatalErrorParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllNagFortranIssues()] (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.15.1
+
+</body>
+</html>

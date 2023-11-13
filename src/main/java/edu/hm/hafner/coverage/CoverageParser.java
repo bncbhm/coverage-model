@@ -1,5 +1,6 @@
 package edu.hm.hafner.coverage;
 
+import java.io.File;
 import java.io.Reader;
 import java.io.Serializable;
 import java.util.NoSuchElementException;
@@ -78,6 +79,25 @@ public abstract class CoverageParser implements Serializable {
     }
 
     /**
+     * Parses a report directory provided by the given reader.
+     *
+     * @param reportDirectory
+     *         the report directory with the coverage information
+     * @param log
+     *         the logger to write messages to
+     *
+     * @return the root of the created tree
+     * @throws ParsingException
+     *         if the XML content cannot be read
+     */
+    public ModuleNode parse(final File reportDirectory, final FilteredLog log) {
+        var moduleNode = parseReportDirectory(reportDirectory, log);
+        getTreeStringBuilder().dedup();
+        return moduleNode;
+    }
+
+
+    /**
      * Called after de-serialization to restore transient fields.
      *
      * @return this
@@ -106,6 +126,21 @@ public abstract class CoverageParser implements Serializable {
      *         if the XML content cannot be read
      */
     protected abstract ModuleNode parseReport(Reader reader, FilteredLog log);
+
+
+    /**
+     * Parses a report provided by the given reader.
+     *
+     * @param reportDirectory
+     *         the report directory with the coverage information in its files
+     * @param log
+     *         the logger to write messages to
+     *
+     * @return the root of the created tree
+     * @throws ParsingException
+     *         if the XML content cannot be read
+     */
+    protected abstract ModuleNode parseReportDirectory(File reportDirectory, FilteredLog log);
 
     protected static Optional<String> getOptionalValueOf(final StartElement element, final QName attribute) {
         Attribute value = element.getAttributeByName(attribute);

@@ -1,5 +1,6 @@
 package edu.hm.hafner.coverage.parser;
 
+import java.io.File;
 import java.io.Reader;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -72,6 +73,11 @@ public class PitestParser extends CoverageParser {
         catch (XMLStreamException exception) {
             throw new ParsingException(exception);
         }
+    }
+
+    @Override
+    protected ModuleNode parseReportDirectory(File reportDirectory, FilteredLog log) {
+        throw new UnsupportedOperationException("");
     }
 
     private void collectLineCoverage(final FileNode fileNode) {

@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>IssueParser.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package edu.hm.hafner.analysis;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.Serializable;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Locale;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.stream.Stream;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.lang3.StringUtils;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.util.SecureXmlParserFactory;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.umd.cs.findbugs.annotations.CheckForNull;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Parses a file and returns the issues reported in this file.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @author Ullrich Hafner</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>@SuppressWarnings(&#34;checkstyle:JavadocVariable&#34;)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public abstract class IssueParser implements Serializable {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final long serialVersionUID = 200992696185460268L;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String ADDITIONAL_PROPERTIES = &#34;additionalProperties&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String CATEGORY = &#34;category&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String COLUMN_END = &#34;columnEnd&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String COLUMN_START = &#34;columnStart&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String DESCRIPTION = &#34;description&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String FILE_NAME = &#34;fileName&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String FINGERPRINT = &#34;fingerprint&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String ID = &#34;id&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String LINE_END = &#34;lineEnd&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String LINE_RANGES = &#34;lineRanges&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String LINE_RANGE_END = &#34;end&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String LINE_RANGE_START = &#34;start&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String LINE_START = &#34;lineStart&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String MESSAGE = &#34;message&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String MODULE_NAME = &#34;moduleName&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String ORIGIN = &#34;origin&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String PACKAGE_NAME = &#34;packageName&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String SEVERITY = &#34;severity&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected static final String TYPE = &#34;type&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Parses the specified file for issues.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param readerFactory</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         provides a reader to the reports</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return the issues</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws ParsingException</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         Signals that during parsing a non-recoverable error has been occurred</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws ParsingCanceledException</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         Signals that the parsing has been aborted by the user</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public abstract Report parse(ReaderFactory readerFactory) throws ParsingException, ParsingCanceledException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Parses the specified file for issues. Invokes the parser using {@link #parse(ReaderFactory)} and sets the file</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * name of the report.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param readerFactory</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         provides a reader to the reports</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return the issues</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws ParsingException</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         Signals that during parsing a non-recoverable error has been occurred</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @throws ParsingCanceledException</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         Signals that the parsing has been aborted by the user</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Report parseFile(final ReaderFactory readerFactory) throws ParsingException, ParsingCanceledException {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_69'/>
+69
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_69'>1</a>
+<span>
+1. parseFile : removed call to edu/hm/hafner/analysis/IssueParser::parse &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        Report report = parse(readerFactory);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_70'/>
+70
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_70'>2</a>
+<span>
+1. parseFile : removed call to edu/hm/hafner/analysis/ReaderFactory::getFileName &rarr; KILLED<br/>
+2. parseFile : removed call to edu/hm/hafner/analysis/Report::setOriginReportFile &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        report.setOriginReportFile(readerFactory.getFileName());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_71'/>
+71
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_71'>1</a>
+<span>
+1. parseFile : replaced return value with null for edu/hm/hafner/analysis/IssueParser::parseFile &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return report;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_72'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Returns whether this parser accepts the specified file as valid input. Parsers may reject a file if it is in the</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_76'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * wrong format to avoid exceptions during parsing.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param readerFactory</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         provides a reader to the reports</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_81'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return {@code true} if this parser accepts this file as valid input, or {@code false} if the file could not be</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         parsed by this parser</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean accepts(final ReaderFactory readerFactory) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_85'/>
+85
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_85'>2</a>
+<span>
+1. accepts : replaced boolean return with false for edu/hm/hafner/analysis/IssueParser::accepts &rarr; KILLED<br/>
+2. accepts : Substituted 1 with 0 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return true;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Returns whether the specified file is an XML file. This method just checks if the first 10 lines contain the XML</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * tag rather than parsing the whole document.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_92'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param readerFactory</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         the file to check</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_95'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return {@code true} if the file is an XML file, {@code false} otherwise</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_96'/>
+96
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_96'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected boolean isXmlFile(final ReaderFactory readerFactory) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_98'/>
+98
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_98'>1</a>
+<span>
+1. isXmlFile : removed call to edu/hm/hafner/analysis/ReaderFactory::readStream &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        try (Stream&#60;String&#62; lines = readerFactory.readStream()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_99'/>
+99
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_99'>7</a>
+<span>
+1. isXmlFile : Substituted 10 with 11 &rarr; SURVIVED<br/>
+2. isXmlFile : replaced call to java/util/stream/Stream::limit with receiver &rarr; SURVIVED<br/>
+3. lambda$isXmlFile$0 : replaced boolean return with false for edu/hm/hafner/analysis/IssueParser::lambda$isXmlFile$0 &rarr; KILLED<br/>
+4. lambda$isXmlFile$0 : removed call to java/lang/String::contains &rarr; KILLED<br/>
+5. isXmlFile : removed call to java/util/stream/Stream::limit &rarr; KILLED<br/>
+6. isXmlFile : removed call to java/util/stream/Stream::anyMatch &rarr; KILLED<br/>
+7. lambda$isXmlFile$0 : replaced boolean return with true for edu/hm/hafner/analysis/IssueParser::lambda$isXmlFile$0 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            return lines.limit(10).anyMatch(line -&#62; line.contains(&#34;&#60;?xml&#34;));</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_100'/>
+100
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_100'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        catch (ParsingException | SecureXmlParserFactory.ParsingException ignored) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_102'/>
+102
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_102'>2</a>
+<span>
+1. isXmlFile : Substituted 0 with 1 &rarr; NO_COVERAGE<br/>
+2. isXmlFile : replaced boolean return with true for edu/hm/hafner/analysis/IssueParser::isXmlFile &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_104'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_105'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_106'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_107'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * &#60;p&#62;Compares two CharSequences, returning {@code true} if they represent</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_108'/>
+108
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_108'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * equal sequences of characters, ignoring case.&#60;/p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_109'/>
+109
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_109'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_110'/>
+110
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_110'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * &#60;p&#62;{@code null}s are handled without exceptions. Two {@code null}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * references are considered equal. The comparison is &#60;strong&#62;case insensitive&#60;/strong&#62;.&#60;/p&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * &#60;pre&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_114'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * equalsIgnoreCase(null, null)   = true</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_115'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * equalsIgnoreCase(null, &#34;abc&#34;)  = false</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_116'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * equalsIgnoreCase(&#34;abc&#34;, null)  = false</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_117'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * equalsIgnoreCase(&#34;abc&#34;, &#34;abc&#34;) = true</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_118'/>
+118
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_118'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * equalsIgnoreCase(&#34;abc&#34;, &#34;ABC&#34;) = true</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_119'/>
+119
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_119'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * &#60;/pre&#62;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_120'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param a</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_122'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         the first CharSequence, may be {@code null}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_123'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param b</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_124'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *         the second CharSequence, may be {@code null}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_125'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_126'/>
+126
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_126'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return {@code true} if the CharSequences are equal (case-insensitive), or both {@code null}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_127'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_128'/>
+128
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_128'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean equalsIgnoreCase(@CheckForNull final String a, @CheckForNull final String b) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_129'/>
+129
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_129'>7</a>
+<span>
+1. equalsIgnoreCase : removed call to edu/hm/hafner/analysis/IssueParser::normalize &rarr; KILLED<br/>
+2. equalsIgnoreCase : removed call to edu/hm/hafner/analysis/IssueParser::normalize &rarr; KILLED<br/>
+3. equalsIgnoreCase : replaced call to edu/hm/hafner/analysis/IssueParser::normalize with argument &rarr; KILLED<br/>
+4. equalsIgnoreCase : replaced boolean return with false for edu/hm/hafner/analysis/IssueParser::equalsIgnoreCase &rarr; KILLED<br/>
+5. equalsIgnoreCase : replaced call to edu/hm/hafner/analysis/IssueParser::normalize with argument &rarr; KILLED<br/>
+6. equalsIgnoreCase : removed call to org/apache/commons/lang3/StringUtils::equals &rarr; KILLED<br/>
+7. equalsIgnoreCase : replaced boolean return with true for edu/hm/hafner/analysis/IssueParser::equalsIgnoreCase &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return StringUtils.equals(normalize(a), normalize(b));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_130'/>
+130
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_130'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_131'/>
+131
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_131'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_132'/>
+132
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_132'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static String normalize(@CheckForNull final String input) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_133'/>
+133
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_133'>5</a>
+<span>
+1. normalize : replaced call to java/lang/String::toUpperCase with receiver &rarr; KILLED<br/>
+2. normalize : replaced call to org/apache/commons/lang3/StringUtils::defaultString with argument &rarr; KILLED<br/>
+3. normalize : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/IssueParser::normalize &rarr; KILLED<br/>
+4. normalize : removed call to org/apache/commons/lang3/StringUtils::defaultString &rarr; KILLED<br/>
+5. normalize : removed call to java/lang/String::toUpperCase &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return StringUtils.defaultString(input).toUpperCase(Locale.ENGLISH);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_134'/>
+134
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_134'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_135'/>
+135
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_135'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@2bbebf64_136'/>
+136
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_136'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@2bbebf64_69'>69</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_69'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseFile<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.ClairParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClairParserTest]/[method:brokenInput()]</span></span> removed call to edu/hm/hafner/analysis/IssueParser::parse &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@2bbebf64_70'>70</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_70'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseFile<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.TrivyParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.TrivyParserTest]/[method:shouldHandleEmptyResultsJenkins67296()]</span></span> removed call to edu/hm/hafner/analysis/ReaderFactory::getFileName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseFile<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest]/[method:shouldStoreReportFileName()]</span></span> removed call to edu/hm/hafner/analysis/Report::setOriginReportFile &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@2bbebf64_71'>71</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_71'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseFile<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.TrivyParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.TrivyParserTest]/[method:shouldHandleEmptyResultsJenkins67296()]</span></span> replaced return value with null for edu/hm/hafner/analysis/IssueParser::parseFile &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@2bbebf64_85'>85</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_85'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>accepts<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.CssLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CssLintParserTest]/[method:shouldParseAllIssues()]</span></span> replaced boolean return with false for edu/hm/hafner/analysis/IssueParser::accepts &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>accepts<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.CssLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CssLintParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@2bbebf64_98'>98</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_98'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isXmlFile<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldNotAcceptTextFiles()]</span></span> removed call to edu/hm/hafner/analysis/ReaderFactory::readStream &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@2bbebf64_99'>99</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_99'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lambda$isXmlFile$0<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.ClangAnalyzerPlistParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangAnalyzerPlistParserTest]/[method:shouldOnlyAcceptXmlFiles()]</span></span> replaced boolean return with false for edu/hm/hafner/analysis/IssueParser::lambda$isXmlFile$0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lambda$isXmlFile$0<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.ClangAnalyzerPlistParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangAnalyzerPlistParserTest]/[method:shouldOnlyAcceptXmlFiles()]</span></span> removed call to java/lang/String::contains &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isXmlFile<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldNotAcceptTextFiles()]</span></span> removed call to java/util/stream/Stream::limit &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isXmlFile<br/><b>Killed by : </b>none</span></span> Substituted 10 with 11 &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>isXmlFile<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.ClangAnalyzerPlistParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangAnalyzerPlistParserTest]/[method:shouldOnlyAcceptXmlFiles()]</span></span> removed call to java/util/stream/Stream::anyMatch &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>isXmlFile<br/><b>Killed by : </b>none</span></span> replaced call to java/util/stream/Stream::limit with receiver &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>lambda$isXmlFile$0<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldNotAcceptTextFiles()]</span></span> replaced boolean return with true for edu/hm/hafner/analysis/IssueParser::lambda$isXmlFile$0 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@2bbebf64_102'>102</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_102'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isXmlFile<br/><b>Killed by : </b>none</span></span> Substituted 0 with 1 &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isXmlFile<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for edu/hm/hafner/analysis/IssueParser::isXmlFile &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@2bbebf64_129'>129</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_129'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equalsIgnoreCase<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> removed call to edu/hm/hafner/analysis/IssueParser::normalize &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>equalsIgnoreCase<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> removed call to edu/hm/hafner/analysis/IssueParser::normalize &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>equalsIgnoreCase<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> replaced call to edu/hm/hafner/analysis/IssueParser::normalize with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>equalsIgnoreCase<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> replaced boolean return with false for edu/hm/hafner/analysis/IssueParser::equalsIgnoreCase &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>equalsIgnoreCase<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> replaced call to edu/hm/hafner/analysis/IssueParser::normalize with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>equalsIgnoreCase<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> removed call to org/apache/commons/lang3/StringUtils::equals &rarr; KILLED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>equalsIgnoreCase<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> replaced boolean return with true for edu/hm/hafner/analysis/IssueParser::equalsIgnoreCase &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@2bbebf64_133'>133</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@2bbebf64_133'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>normalize<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> replaced call to java/lang/String::toUpperCase with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>normalize<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> replaced call to org/apache/commons/lang3/StringUtils::defaultString with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>normalize<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/IssueParser::normalize &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>normalize<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> removed call to org/apache/commons/lang3/StringUtils::defaultString &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>normalize<br/><b>Killed by : </b>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()]</span></span> removed call to java/lang/String::toUpperCase &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>CONSTRUCTOR_CALLS</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>EXPERIMENTAL_ARGUMENT_PROPAGATION</li>
+<li class='mutator'>EXPERIMENTAL_BIG_DECIMAL</li>
+<li class='mutator'>EXPERIMENTAL_BIG_INTEGER</li>
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE</li>
+<li class='mutator'>EXPERIMENTAL_NAKED_RECEIVER</li>
+<li class='mutator'>EXPERIMENTAL_REMOVE_SWITCH_MUTATOR_[0-99]</li>
+<li class='mutator'>EXPERIMENTAL_SWITCH</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INLINE_CONSTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NON_VOID_METHOD_CALLS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_IF</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_IF</li>
+<li class='mutator'>REMOVE_INCREMENTS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>edu.hm.hafner.analysis.IssueParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.IssueParserTest]/[method:shouldCompareWithoutConsideringCase()] (53 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:issue4260()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.ClairParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClairParserTest]/[method:unusualInput()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:parseJapaneseWarnings()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.SphinxBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.SphinxBuildParserTest]/[method:issue63216()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.SphinxBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.SphinxBuildParserTest]/[method:issue60033()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllBrakemanIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:testIssue24611()] (3 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllErlcIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllSunCIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllQACSourceCodeAnalyserIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllClairIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllGnatIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllBuckminsterIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:issue17309()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:issue9926()] (1 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllGcc3CompilerIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllBluePearlIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:parseDifferentTaskNames()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:issue21240()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.PolyspaceParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PolyspaceParserTest]/[method:polyspaceCPTest()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MetrowerksCwLinkerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MetrowerksCwLinkerParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllDiabCIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:issue4712()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:shouldReadErrors()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:issue4098()] (1 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllCadenceIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.PolyspaceParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PolyspaceParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.ErlcParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ErlcParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:issue4274()] (1 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllIarIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllSphinxIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllMetrowerksCWCompilerIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.SphinxBuildLinkCheckParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.SphinxBuildLinkCheckParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllArmccIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.IarParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.IarParserTest]/[method:issue55750()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:issue3897and3898()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.SphinxBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.SphinxBuildParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.QacSourceCodeAnalyserParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QacSourceCodeAnalyserParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:parseArrayInDeprecatedMethod()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.MetrowerksCwCompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MetrowerksCwCompilerParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.BuckminsterParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.BuckminsterParserTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.BrakemanParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.BrakemanParserTest]/[method:shouldParseAllIssues()] (5 ms)</li><li>edu.hm.hafner.analysis.parser.CadenceIncisiveParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CadenceIncisiveParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.SunCParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.SunCParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.ArmccCompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ArmccCompilerParserTest]/[method:shouldParseAllIssues()] (5 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:issue2133()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.HpiCompileParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.HpiCompileParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.GnatParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GnatParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.Armcc5CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Armcc5CompilerParserTest]/[method:shouldParseAllIssues()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.BluePearlParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.BluePearlParserTest]/[method:shouldParseAllIssues()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.ClairParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClairParserTest]/[method:shouldParseAllIssues()] (11 ms)</li><li>edu.hm.hafner.analysis.parser.IarParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.IarParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.IarParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.IarParserTest]/[method:issue58159Utf8()] (15 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllPVSStudioIssues()] (3 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllJavaIssues()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.DiabCParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.DiabCParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:issue4707()] (12 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:shouldParseAllIssues()] (12 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:issue2316()] (23 ms)</li><li>edu.hm.hafner.analysis.parser.pvsstudio.PVSStudioParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.pvsstudio.PVSStudioParserTest]/[method:shouldParseAllIssues()] (8 ms)</li><li>edu.hm.hafner.analysis.parser.XmlParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.XmlParserTest]/[method:shouldParseWithCustomPath()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.JsonParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JsonParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.XmlParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.XmlParserTest]/[method:shouldParseAllIssues()] (13 ms)</li><li>edu.hm.hafner.analysis.parser.JsonLogParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JsonLogParserTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:shouldParseAllIssues()] (177 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldNotAcceptTextFiles()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.ClangAnalyzerPlistParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangAnalyzerPlistParserTest]/[method:shouldOnlyAcceptXmlFiles()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldOnlyAcceptXmlFiles()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseMavenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseMavenParserTest]/[method:shouldOnlyAcceptTextFiles()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseParserTest]/[method:shouldOnlyAcceptTextFiles()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseMavenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseMavenParserTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:shouldParseAllIssues()] (11 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllEclipseIssues()] (11 ms)</li><li>edu.hm.hafner.analysis.parser.ClangAnalyzerPlistParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangAnalyzerPlistParserTest]/[method:shouldParseAllIssues()] (128 ms)</li><li>edu.hm.hafner.analysis.parser.TrivyParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.TrivyParserTest]/[method:shouldHandleEmptyResultsJenkins67296()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.PnpmAuditParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PnpmAuditParserTest]/[method:shouldHandleEmptyResultsJenkins67296()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.VeraCodePipelineScannerParserTest]/[method:shouldHandleEmptyResultsJenkins67296()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.AquaScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AquaScannerParserTest]/[method:shouldHandleEmptyResultsJenkins67296()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest]/[method:shouldIgnoreOtherFile()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest]/[method:shouldIgnoreOtherFile()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.dry.dupfinder.DupFinderParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.dupfinder.DupFinderParserTest]/[method:shouldIgnoreOtherFile()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.DocFxAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.DocFxAdapterTest]/[method:issue55750()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4LinkerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4LinkerParserTest]/[method:issue5870()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue5870()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.ClangParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangParserTest]/[method:shouldNotDetectTestResults()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseMavenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseMavenParserTest]/[method:shouldNotFindAntIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:issue34141()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue57365()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4LinkerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4LinkerParserTest]/[method:issue5445()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.ClangParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangParserTest]/[method:issue36817()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JsonLogParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JsonLogParserTest]/[method:shouldReportDuplicateKey()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:shouldNotReportGccWarnings()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue42823()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:issue4700()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue20544()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue5445()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:issue14043()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4LinkerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4LinkerParserTest]/[method:issue6563()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:issue67521IgnoreJavaDocWarnings()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest]/[method:shouldCountSkipped()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JsonLogParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JsonLogParserTest]/[method:shouldReportLineBreak()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.GnuFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GnuFortranParserTest]/[method:testInvalidParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:issue63346()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue66950()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:issue63346()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue8630()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue56613()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:issue67521IgnoreJavaDocWarnings()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue26441()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:issue55805()] (6 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:shouldNotParseJavaCompilerAndJavaDocWarnings()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue55805()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.StyleCopParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.StyleCopParserTest]/[method:testStyleCopOneFile()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.StyleCopParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.StyleCopParserTest]/[method:testStyleCop43()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest]/[method:issue22356()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest]/[method:shouldSupportSimianParserVersion2331()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest]/[method:issue63527()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JSLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JSLintParserTest]/[method:testCssLint()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.JSLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JSLintParserTest]/[method:testParseWithSingleFile()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest]/[method:issue64117()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:kotlinGradleError()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MavenConsoleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MavenConsoleParserTest]/[method:issue16826()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.TrivyParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.TrivyParserTest]/[method:parseResultsForSchemaVersion2()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.TrivyParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.TrivyParserTest]/[method:shouldMapCorrectly()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.HadoLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.HadoLintParserTest]/[method:unusualInput()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest]/[method:shouldFindOneDuplicationInTwoFiles()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4LinkerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4LinkerParserTest]/[method:shouldNotReportGccWarnings()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.violations.CppCheckAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.CppCheckAdapterTest]/[method:shouldFindErrorWithoutLocation()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest]/[method:shouldStoreReportFileName()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseParserTest]/[method:issue12822()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest]/[method:shouldFindOneDuplicationInFourFiles()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest]/[method:shouldParseExceptions()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest]/[method:shouldReadFileWithWindowsEncoding()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue6563()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest]/[method:shouldFindTwoDuplicationsInTwoFiles()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:kotlinGradle()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:kotlinMavenPlugin()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest]/[method:issue12516()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.CheckStyleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CheckStyleParserTest]/[method:shouldParseWarningToSeverityWarningNormal()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.MavenConsoleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MavenConsoleParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest]/[method:shouldParseArchitectureTests()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.MavenConsoleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MavenConsoleParserTest]/[method:issue64284()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.Flake8AdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.Flake8AdapterTest]/[method:shouldParseFileWithColumns()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.CheckStyleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CheckStyleParserTest]/[method:shouldParseErrorToSeverityError()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue5605()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MavenConsoleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MavenConsoleParserTest]/[method:shouldDetectEnforcerMessages()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:shouldParseAnsiColorCodedLog()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest]/[method:scanFileWithOneDuplication()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.violations.PitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.PitAdapterTest]/[method:shouldNotSkipDuplicates()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.CheckStyleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CheckStyleParserTest]/[method:testParsingOfScalaStyleFormat()] (5 ms)</li><li>edu.hm.hafner.analysis.parser.MavenConsoleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MavenConsoleParserTest]/[method:issue72011MavenEnforcerExceptionWhenEmpty()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.CheckStyleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CheckStyleParserTest]/[method:issue25511()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest]/[method:shouldParseWithJUnit2()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.ClangTidyParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangTidyParserTest]/[method:issue56915()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue5606()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MavenConsoleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MavenConsoleParserTest]/[method:shouldLocateCorrectLineNumber()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:shouldParseErrors()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MavenConsoleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MavenConsoleParserTest]/[method:shouldDetectEnforcerMessagesWithTimeStamp()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.SonarQubeDiffParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.SonarQubeDiffParserTest]/[method:reportDifferentialMultiModuleTest()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:shouldParseTimestamps()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.ErrorProneParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ErrorProneParserTest]/[method:shouldFindAllWarnings()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.PhpParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PhpParserTest]/[method:issue27681()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MavenConsoleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MavenConsoleParserTest]/[method:shouldIdentifyMavenModules()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.DoxygenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.DoxygenParserTest]/[method:issue64657()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:shouldNotIncludeErrorprone()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.DoxygenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.DoxygenParserTest]/[method:issue7178()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.GccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GccParserTest]/[method:issue4010()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.GhsMultiParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GhsMultiParserTest]/[method:issue66130()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.GhsMultiParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GhsMultiParserTest]/[method:issue59118()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.CheckStyleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CheckStyleParserTest]/[method:shouldExtractTypeEvenIfNoDotPresent()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.PylintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PylintParserTest]/[method:shouldParseAbsolutePathsFromWindows()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:shouldParseJavaWarningsInMavenCompilerPlugin()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.dry.dupfinder.DupFinderParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.dupfinder.DupFinderParserTest]/[method:scanFileWithoutSourceCode()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.CppLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CppLintParserTest]/[method:cpplintMessageWithColon()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.GradleErrorProneParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GradleErrorProneParserTest]/[method:shouldParseGradleLogWithWindowsDrive()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.Flake8AdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.Flake8AdapterTest]/[method:shouldParseWithCurrentDirPrefix()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.ErrorProneParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ErrorProneParserTest]/[method:shouldFindAllNewWarnings()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testNonStandardObsoleteParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionF2018Parser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue9926()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.violations.SarifAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.SarifAdapterTest]/[method:shouldReportDifferentSeverities()] (9 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testDeletedFeatureUsedParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionF2008Parser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testWarningParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testQuestionableParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.CodeCheckerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CodeCheckerParserTest]/[method:shouldParseWindowsPaths()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testObsolescentParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testExtensionNAGParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.CheckStyleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CheckStyleParserTest]/[method:shouldParseInfoToSeverityWarningLow()] (8 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testRuntimeErrorParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.PnpmAuditParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PnpmAuditParserTest]/[method:shouldMapCorrectly()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.ClangParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangParserTest]/[method:issue14333()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testPanicParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testErrorParser()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:falseJavaDocPositives()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.ClangParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangParserTest]/[method:issue18084()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseParserTest]/[method:issue57379()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldParseJavaDocsWarningsWithMavenSourcePlugin()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue18081()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldHaveCategory()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testInfoParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.SonarQubeIssuesParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.SonarQubeIssuesParserTest]/[method:reportApiMultiModuleTest()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:testFatalErrorParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseMavenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseMavenParserTest]/[method:issue21377()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.CppLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CppLintParserTest]/[method:issue18290()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.GnuFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GnuFortranParserTest]/[method:testWarningParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseMavenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseMavenParserTest]/[method:issue55368()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.GnuFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GnuFortranParserTest]/[method:testFatalErrorParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.DoxygenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.DoxygenParserTest]/[method:issue55840()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:kotlin18WarningStyle()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:parseArrayInDeprecatedMethod()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.GnuFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GnuFortranParserTest]/[method:testErrorParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseParserTest]/[method:issue55358()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.MavenConsoleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MavenConsoleParserTest]/[method:shouldAssignTypesFromGoals()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.ClangParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangParserTest]/[method:issue31936()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.ErrorProneParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ErrorProneParserTest]/[method:shouldSkipJavacWarnings()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.GnuFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GnuFortranParserTest]/[method:testInternalErrorParser()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.CppCheckAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.CppCheckAdapterTest]/[method:shouldSkipDuplicatesJenkins61939()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.PerlCriticParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PerlCriticParserTest]/[method:testPerlCriticParserCreateWarningNoFileName()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.CheckStyleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CheckStyleParserTest]/[method:testColumnPositions()] (14 ms)</li><li>edu.hm.hafner.analysis.parser.IntelParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.IntelParserTest]/[method:issue5402()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseMavenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseMavenParserTest]/[method:javadocCategory()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue56030()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue56193()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.PerlCriticParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PerlCriticParserTest]/[method:testPerlCriticParserCreateWarning()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.DoxygenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.DoxygenParserTest]/[method:issue6971()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:verifySingleDot()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseParserTest]/[method:issue7077()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JSLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JSLintParserTest]/[method:issue19127()] (6 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:parseParallelPipelineOutput()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseParserTest]/[method:javadocCategory()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseParserTest]/[method:issue6427()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:parseMaven()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.violations.CppCheckAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.CppCheckAdapterTest]/[method:shouldFindMultipleLocationsWithSameId()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue11799()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.CppCheckAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.CppCheckAdapterTest]/[method:shouldFindMultipleLocations()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue56020()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue4576()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue38215()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.IdeaInspectionParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.IdeaInspectionParserTest]/[method:issue56235()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue51485()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseParserTest]/[method:infoLogLevel()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:issue66738()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:testEquals()] (6 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseXMLParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseXMLParserTest]/[method:javadocCategory()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:multilineTranslation()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue63580()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue7718()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.GrypeParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GrypeParserTest]/[method:assertThatVulnerabilityWithoutDescriptionCanBeParsed()] (5 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue48647()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue10566()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue56450()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue4932()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue9926()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue3582()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:shouldRemoveAnsiColors()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue32298()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.AntJavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AntJavacParserTest]/[method:issue55805()] (40 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue6709()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.FxcopParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.FxcopParserTest]/[method:testJenkins14172()] (12 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:shouldDetectKeywordsInRegexCaseInsensitive()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue22386()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue27914()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:shouldParseAllIssuesSingleLine()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue14888()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue56612()] (8 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()] (13 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:issue55221()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.PylintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PylintParserTest]/[method:shouldParseReportWithoutSymbol()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue8347()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue20154()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:issue4731()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:shouldAssignAbsolutePath()] (36 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithSeveralWarnings()] (118 ms)</li><li>edu.hm.hafner.analysis.parser.EclipseParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EclipseParserTest]/[method:issue7077all()] (2679 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindNoJavacIssuesInEclipseOutput()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.CssLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CssLintParserTest]/[method:shouldParseAllIssues()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.XlcLinkerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.XlcLinkerParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.XlcParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.XlcParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.CodeGeneratorParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CodeGeneratorParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.PerlCriticParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PerlCriticParserTest]/[method:shouldParseAllIssues()] (9 ms)</li><li>edu.hm.hafner.analysis.parser.violations.ZptLintAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.ZptLintAdapterTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.GoVetParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GoVetParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.RobocopyParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RobocopyParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllXlcIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.PreFastParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PreFastParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.MyPyAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.MyPyAdapterTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.MavenConsoleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MavenConsoleParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.violations.JsHintAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.JsHintAdapterTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.violations.XmlLintAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.XmlLintAdapterTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.KlocWorkAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.KlocWorkAdapterTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.YamlLintAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.YamlLintAdapterTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.Flake8AdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.Flake8AdapterTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.violations.SemgrepAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.SemgrepAdapterTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.TnsdlParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.TnsdlParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.StyleCopParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.StyleCopParserTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.violations.ResharperInspectCodeAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.ResharperInspectCodeAdapterTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.CrossCoreEmbeddedStudioParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CrossCoreEmbeddedStudioParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.FlawfinderParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.FlawfinderParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.violations.PyDocStyleAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.PyDocStyleAdapterTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllScalaIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.violations.CppCheckAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.CppCheckAdapterTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.FoodcriticParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.FoodcriticParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.FlexSdkParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.FlexSdkParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.IdeaInspectionParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.IdeaInspectionParserTest]/[method:shouldParseAllIssues()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.GoLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GoLintParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.PhpParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PhpParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.SbtScalacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.SbtScalacParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JcReportParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JcReportParserTest]/[method:testGetWarningList()] (8 ms)</li><li>edu.hm.hafner.analysis.parser.CodeCheckerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CodeCheckerParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JSLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JSLintParserTest]/[method:shouldParseAllIssues()] (5 ms)</li><li>edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.simian.SimianParserTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.RuboCopParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RuboCopParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.JUnitAdapterTest]/[method:shouldParseAllIssues()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.violations.DocFxAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.DocFxAdapterTest]/[method:shouldParseAllIssues()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.violations.DartAnalyzeParserAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.DartAnalyzeParserAdapterTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.IarCstatParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.IarCstatParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.EmbeddedEngineerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.EmbeddedEngineerParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.GradleErrorProneParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GradleErrorProneParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.CoolfluxChessccParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CoolfluxChessccParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.PuppetLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PuppetLintParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.ScalacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ScalacParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.ErrorProneParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ErrorProneParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.CodeAnalysisParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CodeAnalysisParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.OELintAdvParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.OELintAdvParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.violations.CodeNarcAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.CodeNarcAdapterTest]/[method:shouldParseAllIssues()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.YuiCompressorParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.YuiCompressorParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.TiCcsParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.TiCcsParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.InvalidsParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.InvalidsParserTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.JavacParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavacParserTest]/[method:shouldParseAllIssues()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldParseAllIssues()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.CargoCheckParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CargoCheckParserTest]/[method:shouldParseAllIssues()] (3 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllErrorProneIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.CMakeParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CMakeParserTest]/[method:shouldParseAllIssues()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.TaskingVxCompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.TaskingVxCompilerParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.cpd.CpdParserTest]/[method:shouldParseAllIssues()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.DrMemoryParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.DrMemoryParserTest]/[method:shouldParseAllIssues()] (5 ms)</li><li>edu.hm.hafner.analysis.parser.GhsMultiParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GhsMultiParserTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.violations.PitAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.PitAdapterTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.GnuFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GnuFortranParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.AnsibleLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AnsibleLintParserTest]/[method:shouldParseAllIssues()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.TaglistParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.TaglistParserTest]/[method:shouldParseAllIssues()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.IntelParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.IntelParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.ClangParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.ClangTidyParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClangTidyParserTest]/[method:shouldParseAllIssues()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4LinkerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4LinkerParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.P4ParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.P4ParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllGcc4Issues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.NagFortranParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.NagFortranParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.GendarmeParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.GendarmeParserTest]/[method:shouldParseAllIssues()] (11 ms)</li><li>edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Gcc4CompilerParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.DoxygenParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.DoxygenParserTest]/[method:shouldParseAllIssues()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.violations.AndroidLintParserAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.AndroidLintParserAdapterTest]/[method:shouldParseAllIssues()] (14 ms)</li><li>edu.hm.hafner.analysis.parser.Pep8ParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.Pep8ParserTest]/[method:shouldParseAllIssues()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JcReportParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JcReportParserTest]/[method:shouldParseAllIssues()] (13 ms)</li><li>edu.hm.hafner.analysis.parser.MentorParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MentorParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.CcmParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CcmParserTest]/[method:shouldParseAllIssues()] (33 ms)</li><li>edu.hm.hafner.analysis.parser.MsBuildParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.MsBuildParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.ProtoLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ProtoLintParserTest]/[method:shouldParseAllIssues()] (26 ms)</li><li>edu.hm.hafner.analysis.parser.violations.SarifAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.SarifAdapterTest]/[method:shouldParseAllIssues()] (26 ms)</li><li>edu.hm.hafner.analysis.parser.FxcopParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.FxcopParserTest]/[method:shouldParseAllIssues()] (8 ms)</li><li>edu.hm.hafner.analysis.parser.violations.ValgrindAdapterTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.violations.ValgrindAdapterTest]/[method:shouldParseAllIssues()] (9 ms)</li><li>edu.hm.hafner.analysis.parser.SimulinkCheckParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.SimulinkCheckParserTest]/[method:shouldParseAllIssues()] (31 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()] (9 ms)</li><li>edu.hm.hafner.analysis.parser.CppLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CppLintParserTest]/[method:shouldParseAllIssues()] (26 ms)</li><li>edu.hm.hafner.analysis.parser.PylintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PylintParserTest]/[method:shouldParseAllIssues()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.RfLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.RfLintParserTest]/[method:shouldParseAllIssues()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.dry.dupfinder.DupFinderParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.dry.dupfinder.DupFinderParserTest]/[method:shouldParseAllIssues()] (64 ms)</li><li>edu.hm.hafner.analysis.parser.AjcParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AjcParserTest]/[method:shouldParseAllIssues()] (63 ms)</li><li>edu.hm.hafner.analysis.parser.CargoClippyParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CargoClippyParserTest]/[method:shouldParseAllIssues()] (87 ms)</li><li>edu.hm.hafner.analysis.parser.CheckStyleParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.CheckStyleParserTest]/[method:shouldParseAllIssues()] (151 ms)</li><li>edu.hm.hafner.analysis.parser.AcuCobolParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AcuCobolParserTest]/[method:shouldParseAllIssues()] (568 ms)</li><li>edu.hm.hafner.analysis.parser.ClairParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.ClairParserTest]/[method:brokenInput()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.HadoLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.HadoLintParserTest]/[method:brokenInput()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.DockerLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.DockerLintParserTest]/[method:brokenInput()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.TrivyParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.TrivyParserTest]/[method:brokenInput()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.PnpmAuditParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PnpmAuditParserTest]/[method:brokenInput()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.BrakemanParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.BrakemanParserTest]/[method:brokenInput()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.OTDockerLintParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.OTDockerLintParserTest]/[method:brokenInput()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.AquaScannerParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.AquaScannerParserTest]/[method:brokenInput()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:wrongParent()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:rootElementHasParent()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:duplicatedName()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JcReportParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JcReportParserTest]/[method:testSAXEception()] (5 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:missingElementStart()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:unknownTranslationType()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:missingName()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:duplicatedTranslation()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:missingTranslation()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:duplicatedSource()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:missingNumerusAttribute()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.QtTranslationParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.QtTranslationParserTest]/[method:missingSource()] (2 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.15.1
+
+</body>
+</html>

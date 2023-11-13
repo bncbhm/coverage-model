@@ -1,0 +1,3198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>PmdParser.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package edu.hm.hafner.analysis.parser.pmd;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.IOException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.Reader;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.lang3.StringUtils;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.xml.sax.SAXException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.IssueBuilder;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.IssueParser;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.ParsingException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.ReaderFactory;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Report;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.SecureDigester;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Severity;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * A parser for PMD XML files.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @author Ullrich Hafner</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public class PmdParser extends IssueParser {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final long serialVersionUID = 6507147028628714706L;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** PMD priorities smaller than this value are mapped to {@link Severity#WARNING_HIGH}. */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final int PMD_PRIORITY_MAPPED_TO_HIGH_PRIORITY = 3;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /** PMD priorities greater than this value are mapped to {@link Severity#WARNING_LOW}. */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final int PMD_PRIORITY_MAPPED_TO_LOW_PRIORITY = 4;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Report parse(final ReaderFactory readerFactory) throws ParsingException {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_32'/>
+32
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_32'>1</a>
+<span>
+1. parse : removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::parseIssues &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        Report issues = parseIssues(readerFactory);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_33'/>
+33
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_33'>3</a>
+<span>
+1. parse : removed call to java/util/stream/Stream::forEach &rarr; KILLED<br/>
+2. parse : removed call to edu/hm/hafner/analysis/Report::stream &rarr; KILLED<br/>
+3. parse : removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::parseErrors &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        parseErrors(readerFactory).stream().forEach(issues::add);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_34'/>
+34
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_34'>1</a>
+<span>
+1. parse : replaced return value with null for edu/hm/hafner/analysis/parser/pmd/PmdParser::parse &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return issues;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private Report parseIssues(final ReaderFactory readerFactory) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_38'/>
+38
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_38'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        SecureDigester digester = new SecureDigester(PmdParser.class);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        String rootXPath = &#34;pmd&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_41'/>
+41
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_41'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::addObjectCreate &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        digester.addObjectCreate(rootXPath, Pmd.class);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_42'/>
+42
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_42'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::addSetProperties &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        digester.addSetProperties(rootXPath);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        String fileXPath = &#34;pmd/file&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_45'/>
+45
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_45'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::addObjectCreate &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        digester.addObjectCreate(fileXPath, File.class);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_46'/>
+46
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_46'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::addSetProperties &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        digester.addSetProperties(fileXPath);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_47'/>
+47
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_47'>2</a>
+<span>
+1. parseIssues : removed call to java/lang/Class::getName &rarr; SURVIVED<br/>
+2. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::addSetNext &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        digester.addSetNext(fileXPath, &#34;addFile&#34;, File.class.getName());</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        String bugXPath = &#34;pmd/file/violation&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_50'/>
+50
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_50'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::addObjectCreate &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        digester.addObjectCreate(bugXPath, Violation.class);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_51'/>
+51
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_51'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::addSetProperties &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        digester.addSetProperties(bugXPath);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_52'/>
+52
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_52'>2</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::addCallMethod &rarr; KILLED<br/>
+2. parseIssues : Substituted 0 with 1 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        digester.addCallMethod(bugXPath, &#34;setMessage&#34;, 0);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_53'/>
+53
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_53'>2</a>
+<span>
+1. parseIssues : removed call to java/lang/Class::getName &rarr; SURVIVED<br/>
+2. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::addSetNext &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        digester.addSetNext(bugXPath, &#34;addViolation&#34;, Violation.class.getName());</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_55'/>
+55
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_55'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/ReaderFactory::create &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        try (Reader reader = readerFactory.create()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_56'/>
+56
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_56'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/SecureDigester::parse &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            Pmd pmd = digester.parse(reader);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_57'/>
+57
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_57'>3</a>
+<span>
+1. parseIssues : removed conditional - replaced equality check with false &rarr; SURVIVED<br/>
+2. parseIssues : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. parseIssues : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            if (pmd == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_58'/>
+58
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_58'>2</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/ParsingException::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+2. parseIssues : Substituted 0 with 1 &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                throw new ParsingException(&#34;Input stream is not a PMD file.&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_61'/>
+61
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_61'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::convertIssues &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return convertIssues(pmd);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_63'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        catch (IOException | SAXException exception) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_64'/>
+64
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_64'>1</a>
+<span>
+1. parseIssues : removed call to edu/hm/hafner/analysis/ParsingException::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            throw new ParsingException(exception);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private Report parseErrors(final ReaderFactory readerFactory) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_69'/>
+69
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_69'>1</a>
+<span>
+1. parseErrors : removed call to edu/hm/hafner/analysis/SecureDigester::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        SecureDigester digester = new SecureDigester(PmdParser.class);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        String rootXPath = &#34;pmd&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_72'/>
+72
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_72'>1</a>
+<span>
+1. parseErrors : removed call to edu/hm/hafner/analysis/SecureDigester::addObjectCreate &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        digester.addObjectCreate(rootXPath, Pmd.class);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_73'/>
+73
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_73'>1</a>
+<span>
+1. parseErrors : removed call to edu/hm/hafner/analysis/SecureDigester::addSetProperties &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        digester.addSetProperties(rootXPath);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        String errorXPath = &#34;pmd/error&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_76'/>
+76
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_76'>1</a>
+<span>
+1. parseErrors : removed call to edu/hm/hafner/analysis/SecureDigester::addObjectCreate &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        digester.addObjectCreate(errorXPath, PmdError.class);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_77'/>
+77
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_77'>1</a>
+<span>
+1. parseErrors : removed call to edu/hm/hafner/analysis/SecureDigester::addSetProperties &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        digester.addSetProperties(errorXPath);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_78'/>
+78
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_78'>2</a>
+<span>
+1. parseErrors : removed call to java/lang/Class::getName &rarr; SURVIVED<br/>
+2. parseErrors : removed call to edu/hm/hafner/analysis/SecureDigester::addSetNext &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        digester.addSetNext(errorXPath, &#34;addError&#34;, PmdError.class.getName());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_79'/>
+79
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_79'>2</a>
+<span>
+1. parseErrors : Substituted 0 with 1 &rarr; KILLED<br/>
+2. parseErrors : removed call to edu/hm/hafner/analysis/SecureDigester::addCallMethod &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        digester.addCallMethod(errorXPath, &#34;setDescription&#34;, 0);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_81'/>
+81
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_81'>1</a>
+<span>
+1. parseErrors : removed call to edu/hm/hafner/analysis/ReaderFactory::create &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        try (Reader reader = readerFactory.create()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_82'/>
+82
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_82'>1</a>
+<span>
+1. parseErrors : removed call to edu/hm/hafner/analysis/SecureDigester::parse &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            Pmd pmd = digester.parse(reader);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_83'/>
+83
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_83'>3</a>
+<span>
+1. parseErrors : removed conditional - replaced equality check with false &rarr; SURVIVED<br/>
+2. parseErrors : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. parseErrors : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>            if (pmd == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_84'/>
+84
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_84'>2</a>
+<span>
+1. parseErrors : removed call to edu/hm/hafner/analysis/ParsingException::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+2. parseErrors : Substituted 0 with 1 &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                throw new ParsingException(&#34;Input stream is not a PMD file.&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_85'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_87'/>
+87
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_87'>1</a>
+<span>
+1. parseErrors : removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::convertErrors &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return convertErrors(pmd);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_89'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>        catch (IOException | SAXException exception) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_90'/>
+90
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_90'>1</a>
+<span>
+1. parseErrors : removed call to edu/hm/hafner/analysis/ParsingException::&#60;init&#62; &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            throw new ParsingException(exception);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_92'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private Report convertIssues(final Pmd pmdIssues) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_95'/>
+95
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_95'>1</a>
+<span>
+1. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        try (IssueBuilder issueBuilder = new IssueBuilder()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_96'/>
+96
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_96'>1</a>
+<span>
+1. convertIssues : removed call to edu/hm/hafner/analysis/Report::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            Report report = new Report();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_97'/>
+97
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_97'>1</a>
+<span>
+1. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/Pmd::getFiles &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            for (File file : pmdIssues.getFiles()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_98'/>
+98
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_98'>1</a>
+<span>
+1. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/File::getViolations &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                for (Violation warning : file.getViolations()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_99'/>
+99
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_99'>3</a>
+<span>
+1. convertIssues : replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED<br/>
+2. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::mapPriority &rarr; KILLED<br/>
+3. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    issueBuilder.setSeverity(mapPriority(warning))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_100'/>
+100
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_100'>3</a>
+<span>
+1. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED<br/>
+2. convertIssues : replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED<br/>
+3. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::createMessage &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setMessage(createMessage(warning))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_101'/>
+101
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_101'>3</a>
+<span>
+1. convertIssues : replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED<br/>
+2. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED<br/>
+3. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getRuleset &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setCategory(warning.getRuleset())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_102'/>
+102
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_102'>3</a>
+<span>
+1. convertIssues : replaced call to edu/hm/hafner/analysis/IssueBuilder::setType with receiver &rarr; KILLED<br/>
+2. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getRule &rarr; KILLED<br/>
+3. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::setType &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setType(warning.getRule())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_103'/>
+103
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_103'>3</a>
+<span>
+1. convertIssues : replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED<br/>
+2. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED<br/>
+3. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getBeginline &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setLineStart(warning.getBeginline())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_104'/>
+104
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_104'>3</a>
+<span>
+1. convertIssues : replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineEnd with receiver &rarr; KILLED<br/>
+2. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getEndline &rarr; KILLED<br/>
+3. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::setLineEnd &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setLineEnd(warning.getEndline())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_105'/>
+105
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_105'>3</a>
+<span>
+1. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::setPackageName &rarr; KILLED<br/>
+2. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getPackage &rarr; KILLED<br/>
+3. convertIssues : replaced call to edu/hm/hafner/analysis/IssueBuilder::setPackageName with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setPackageName(warning.getPackage())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_106'/>
+106
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_106'>3</a>
+<span>
+1. convertIssues : replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED<br/>
+2. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED<br/>
+3. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/File::getName &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setFileName(file.getName())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_107'/>
+107
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_107'>3</a>
+<span>
+1. convertIssues : replaced call to edu/hm/hafner/analysis/IssueBuilder::setColumnStart with receiver &rarr; KILLED<br/>
+2. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getBegincolumn &rarr; KILLED<br/>
+3. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::setColumnStart &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setColumnStart(warning.getBegincolumn())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_108'/>
+108
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_108'>3</a>
+<span>
+1. convertIssues : replaced call to edu/hm/hafner/analysis/IssueBuilder::setColumnEnd with receiver &rarr; KILLED<br/>
+2. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::setColumnEnd &rarr; KILLED<br/>
+3. convertIssues : removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getEndcolumn &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                            .setColumnEnd(warning.getEndcolumn());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_109'/>
+109
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_109'>3</a>
+<span>
+1. convertIssues : replaced call to edu/hm/hafner/analysis/Report::add with receiver &rarr; KILLED<br/>
+2. convertIssues : removed call to edu/hm/hafner/analysis/IssueBuilder::buildAndClean &rarr; KILLED<br/>
+3. convertIssues : removed call to edu/hm/hafner/analysis/Report::add &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                    report.add(issueBuilder.buildAndClean());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_110'/>
+110
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_110'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>                }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_111'/>
+111
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_111'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            return report;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_114'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_115'/>
+115
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_115'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_116'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private Report convertErrors(final Pmd pmdIssues) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_117'/>
+117
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_117'>1</a>
+<span>
+1. convertErrors : removed call to edu/hm/hafner/analysis/IssueBuilder::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        try (IssueBuilder issueBuilder = new IssueBuilder()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_118'/>
+118
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_118'>1</a>
+<span>
+1. convertErrors : removed call to edu/hm/hafner/analysis/Report::&#60;init&#62; &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            Report report = new Report();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_119'/>
+119
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_119'>1</a>
+<span>
+1. convertErrors : removed call to edu/hm/hafner/analysis/parser/pmd/Pmd::getErrors &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            for (PmdError error : pmdIssues.getErrors()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_120'/>
+120
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_120'>2</a>
+<span>
+1. convertErrors : replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED<br/>
+2. convertErrors : removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                issueBuilder.setSeverity(Severity.ERROR)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_121'/>
+121
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_121'>3</a>
+<span>
+1. convertErrors : removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED<br/>
+2. convertErrors : removed call to edu/hm/hafner/analysis/parser/pmd/PmdError::getMsg &rarr; KILLED<br/>
+3. convertErrors : replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                        .setMessage(error.getMsg())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_122'/>
+122
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_122'>3</a>
+<span>
+1. convertErrors : replaced call to edu/hm/hafner/analysis/IssueBuilder::setDescription with receiver &rarr; KILLED<br/>
+2. convertErrors : removed call to edu/hm/hafner/analysis/parser/pmd/PmdError::getDescription &rarr; KILLED<br/>
+3. convertErrors : removed call to edu/hm/hafner/analysis/IssueBuilder::setDescription &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                        .setDescription(error.getDescription())</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_123'/>
+123
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_123'>3</a>
+<span>
+1. convertErrors : removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED<br/>
+2. convertErrors : replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED<br/>
+3. convertErrors : removed call to edu/hm/hafner/analysis/parser/pmd/PmdError::getFilename &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                        .setFileName(error.getFilename());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_124'/>
+124
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_124'>3</a>
+<span>
+1. convertErrors : removed call to edu/hm/hafner/analysis/IssueBuilder::buildAndClean &rarr; KILLED<br/>
+2. convertErrors : removed call to edu/hm/hafner/analysis/Report::add &rarr; KILLED<br/>
+3. convertErrors : replaced call to edu/hm/hafner/analysis/Report::add with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                report.add(issueBuilder.buildAndClean());</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_125'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_126'/>
+126
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_126'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            return report;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_127'/>
+127
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_127'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_128'/>
+128
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_128'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_129'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_130'/>
+130
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_130'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private Severity mapPriority(final Violation warning) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_131'/>
+131
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_131'>6</a>
+<span>
+1. mapPriority : removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getPriority &rarr; KILLED<br/>
+2. mapPriority : changed conditional boundary &rarr; KILLED<br/>
+3. mapPriority : removed conditional - replaced comparison check with true &rarr; KILLED<br/>
+4. mapPriority : negated conditional &rarr; KILLED<br/>
+5. mapPriority : Substituted 3 with 4 &rarr; KILLED<br/>
+6. mapPriority : removed conditional - replaced comparison check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (warning.getPriority() &#60; PMD_PRIORITY_MAPPED_TO_HIGH_PRIORITY) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_132'/>
+132
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_132'>1</a>
+<span>
+1. mapPriority : replaced return value with null for edu/hm/hafner/analysis/parser/pmd/PmdParser::mapPriority &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return Severity.WARNING_HIGH;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_133'/>
+133
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_133'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_134'/>
+134
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_134'>6</a>
+<span>
+1. mapPriority : Substituted 4 with 5 &rarr; KILLED<br/>
+2. mapPriority : changed conditional boundary &rarr; KILLED<br/>
+3. mapPriority : removed conditional - replaced comparison check with false &rarr; KILLED<br/>
+4. mapPriority : removed conditional - replaced comparison check with true &rarr; KILLED<br/>
+5. mapPriority : negated conditional &rarr; KILLED<br/>
+6. mapPriority : removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getPriority &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        else if (warning.getPriority() &#62; PMD_PRIORITY_MAPPED_TO_LOW_PRIORITY) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_135'/>
+135
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_135'>1</a>
+<span>
+1. mapPriority : replaced return value with null for edu/hm/hafner/analysis/parser/pmd/PmdParser::mapPriority &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return Severity.WARNING_LOW;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_136'/>
+136
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_136'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_137'/>
+137
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_137'>1</a>
+<span>
+1. mapPriority : replaced return value with null for edu/hm/hafner/analysis/parser/pmd/PmdParser::mapPriority &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return Severity.WARNING_NORMAL;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_138'/>
+138
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_138'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_139'/>
+139
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_139'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_140'/>
+140
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_140'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private String createMessage(final Violation warning) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_141'/>
+141
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_141'>1</a>
+<span>
+1. createMessage : removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getMessage &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        String original = warning.getMessage();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_142'/>
+142
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_142'>3</a>
+<span>
+1. createMessage : removed conditional - replaced equality check with false &rarr; SURVIVED<br/>
+2. createMessage : negated conditional &rarr; KILLED<br/>
+3. createMessage : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (original == null) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_143'/>
+143
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_143'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>            return StringUtils.EMPTY;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_144'/>
+144
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_144'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_145'/>
+145
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_145'>4</a>
+<span>
+1. createMessage : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. createMessage : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. createMessage : removed call to org/apache/commons/lang3/StringUtils::endsWith &rarr; KILLED<br/>
+4. createMessage : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (StringUtils.endsWith(original, &#34;.&#34;)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_146'/>
+146
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_146'>1</a>
+<span>
+1. createMessage : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/pmd/PmdParser::createMessage &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return original;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_147'/>
+147
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_147'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_148'/>
+148
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_148'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        else {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_149'/>
+149
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_149'>1</a>
+<span>
+1. createMessage : replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/pmd/PmdParser::createMessage &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return original + &#34;.&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_150'/>
+150
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_150'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_151'/>
+151
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_151'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_152'/>
+152
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_152'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@50769995_153'/>
+153
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@50769995_153'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_32'>32</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_32'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::parseIssues &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_33'>33</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_33'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to java/util/stream/Stream::forEach &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/Report::stream &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::parseErrors &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_34'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parse<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/pmd/PmdParser::parse &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_38'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldHandleEmptyFile()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_41'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addObjectCreate &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_42'>42</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_42'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addSetProperties &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_45'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addObjectCreate &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_46'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addSetProperties &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_47'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>none</span></span> removed call to java/lang/Class::getName &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addSetNext &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_50'>50</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_50'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addObjectCreate &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_51'>51</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_51'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addSetProperties &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_52'>52</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_52'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addCallMethod &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_53'>53</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_53'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addSetNext &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>none</span></span> removed call to java/lang/Class::getName &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_55'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldHandleEmptyFile()]</span></span> removed call to edu/hm/hafner/analysis/ReaderFactory::create &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_56'>56</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_56'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::parse &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_57'>57</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_57'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_58'>58</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_58'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/ParsingException::&#60;init&#62; &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>none</span></span> Substituted 0 with 1 &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_61'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::convertIssues &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_64'>64</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_64'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldHandleEmptyFile()]</span></span> removed call to edu/hm/hafner/analysis/ParsingException::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_69'>69</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_69'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_72'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addObjectCreate &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_73'>73</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_73'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addSetProperties &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_76'>76</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_76'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addObjectCreate &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_77'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addSetProperties &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_78'>78</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_78'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>none</span></span> removed call to java/lang/Class::getName &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addSetNext &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_79'>79</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_79'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::addCallMethod &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_81'>81</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_81'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/ReaderFactory::create &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_82'>82</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_82'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/SecureDigester::parse &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_83'>83</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_83'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_84'>84</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_84'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/ParsingException::&#60;init&#62; &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>none</span></span> Substituted 0 with 1 &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_87'>87</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_87'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::convertErrors &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_90'>90</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_90'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>parseErrors<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/ParsingException::&#60;init&#62; &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_95'>95</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_95'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_96'>96</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_96'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/Report::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_97'>97</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_97'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Pmd::getFiles &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_98'>98</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_98'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/File::getViolations &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_99'>99</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_99'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::mapPriority &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_100'>100</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_100'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/PmdParser::createMessage &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_101'>101</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_101'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getRuleset &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_102'>102</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_102'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setType with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getRule &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setType &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_103'>103</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_103'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getBeginline &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_104'>104</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_104'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineEnd with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getEndline &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setLineEnd &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_105'>105</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_105'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setPackageName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:testEquals()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getPackage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:testEquals()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setPackageName with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_106'>106</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_106'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/File::getName &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_107'>107</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_107'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setColumnStart with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getBegincolumn &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setColumnStart &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_108'>108</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_108'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setColumnEnd with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setColumnEnd &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getEndcolumn &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_109'>109</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_109'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> replaced call to edu/hm/hafner/analysis/Report::add with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::buildAndClean &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertIssues<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()]</span></span> removed call to edu/hm/hafner/analysis/Report::add &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_117'>117</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_117'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_118'>118</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_118'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/Report::&#60;init&#62; &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_119'>119</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_119'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Pmd::getErrors &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_120'>120</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_120'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_121'>121</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_121'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/PmdError::getMsg &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_122'>122</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_122'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setDescription with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/PmdError::getDescription &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setDescription &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_123'>123</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_123'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/PmdError::getFilename &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_124'>124</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_124'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::buildAndClean &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> removed call to edu/hm/hafner/analysis/Report::add &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>convertErrors<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()]</span></span> replaced call to edu/hm/hafner/analysis/Report::add with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_131'>131</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_131'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getPriority &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> changed conditional boundary &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed conditional - replaced comparison check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> Substituted 3 with 4 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced comparison check with false &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_132'>132</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_132'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/pmd/PmdParser::mapPriority &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_134'>134</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_134'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> Substituted 4 with 5 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> changed conditional boundary &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced comparison check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed conditional - replaced comparison check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getPriority &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_135'>135</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_135'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/pmd/PmdParser::mapPriority &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_137'>137</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_137'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>mapPriority<br/><b>Killed by : </b>none</span></span> replaced return value with null for edu/hm/hafner/analysis/parser/pmd/PmdParser::mapPriority &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_141'>141</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_141'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to edu/hm/hafner/analysis/parser/pmd/Violation::getMessage &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_142'>142</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_142'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createMessage<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with false &rarr; SURVIVED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_145'>145</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_145'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> removed call to org/apache/commons/lang3/StringUtils::endsWith &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_146'>146</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_146'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/pmd/PmdParser::createMessage &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@50769995_149'>149</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@50769995_149'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()]</span></span> replaced return value with &#34;&#34; for edu/hm/hafner/analysis/parser/pmd/PmdParser::createMessage &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>CONSTRUCTOR_CALLS</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>EXPERIMENTAL_ARGUMENT_PROPAGATION</li>
+<li class='mutator'>EXPERIMENTAL_BIG_DECIMAL</li>
+<li class='mutator'>EXPERIMENTAL_BIG_INTEGER</li>
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE</li>
+<li class='mutator'>EXPERIMENTAL_NAKED_RECEIVER</li>
+<li class='mutator'>EXPERIMENTAL_REMOVE_SWITCH_MUTATOR_[0-99]</li>
+<li class='mutator'>EXPERIMENTAL_SWITCH</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INLINE_CONSTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NON_VOID_METHOD_CALLS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_IF</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_IF</li>
+<li class='mutator'>REMOVE_INCREMENTS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue12801()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldCorrectlyMapLinesAndColumns()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:verifySingleDot()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:testEquals()] (6 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:issue54736()] (13 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldParseAllIssues()] (9 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllIssuesForPmdAlias()] (27 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithSeveralWarnings()] (118 ms)</li><li>edu.hm.hafner.analysis.registry.ParsersTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.registry.ParsersTest]/[method:shouldFindAllPmdIssues()] (119 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:scanFileWithNoBugs()] (4 ms)</li><li>edu.hm.hafner.analysis.parser.PmdParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.PmdParserTest]/[method:shouldHandleEmptyFile()] (3 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.15.1
+
+</body>
+</html>

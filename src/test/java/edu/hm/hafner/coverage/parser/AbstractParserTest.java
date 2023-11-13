@@ -1,9 +1,6 @@
 package edu.hm.hafner.coverage.parser;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -32,12 +29,18 @@ abstract class AbstractParserTest {
     }
 
     ModuleNode readReport(final String fileName, final CoverageParser parser) {
-        try (InputStream stream = AbstractParserTest.class.getResourceAsStream(fileName);
-                Reader reader = new InputStreamReader(Objects.requireNonNull(stream), StandardCharsets.UTF_8)) {
-            return parser.parse(reader, log);
+        File report = new File(fileName);
+        if (report.isDirectory()){
+            return parser.parse(report, log);
         }
-        catch (IOException e) {
-            throw new AssertionError(e);
+        else {
+            try (InputStream stream = AbstractParserTest.class.getResourceAsStream(fileName);
+                    Reader reader = new InputStreamReader(Objects.requireNonNull(stream), StandardCharsets.UTF_8)) {
+                return parser.parse(reader, log);
+            }
+            catch (IOException e) {
+                throw new AssertionError(e);
+            }
         }
     }
 

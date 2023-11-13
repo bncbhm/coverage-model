@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>JavaDocParser.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package edu.hm.hafner.analysis.parser;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Optional;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.regex.Matcher;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.regex.Pattern;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import org.apache.commons.lang3.StringUtils;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Issue;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.IssueBuilder;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.analysis.Severity;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import edu.hm.hafner.util.LookaheadStream;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * A parser for the ant JavaDoc compiler warnings.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * @author Ullrich Hafner</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class JavaDocParser extends AbstractMavenLogParser {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final long serialVersionUID = 7127568148333474921L;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final String JAVA_DOC_WARNING_PATTERN = &#34;(?:\\s*\\[(?:javadoc|WARNING|ERROR)\\]\\s*)?(?:(?:(?:Exit&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            + &#34; code: \\d* - )?(.*):(\\d+))|(?:\\s*javadoc\\s*)):\\s*(warning|error)\\s*[-:]\\s*(.*)&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_23'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private static final Pattern TAG_PATTERN = Pattern.compile(&#34;.*(@\\w+).*&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Creates a new instance of {@link JavaDocParser}.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public JavaDocParser() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        super(JAVA_DOC_WARNING_PATTERN);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected boolean isLineInteresting(final String line) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_35'/>
+35
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_35'>7</a>
+<span>
+1. isLineInteresting : Substituted 0 with 1 &rarr; KILLED<br/>
+2. isLineInteresting : negated conditional &rarr; KILLED<br/>
+3. isLineInteresting : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. isLineInteresting : removed call to edu/hm/hafner/analysis/parser/AbstractMavenLogParser::isLineInteresting &rarr; KILLED<br/>
+5. isLineInteresting : Substituted 1 with 0 &rarr; KILLED<br/>
+6. isLineInteresting : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+7. isLineInteresting : replaced boolean return with true for edu/hm/hafner/analysis/parser/JavaDocParser::isLineInteresting &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return super.isLineInteresting(line)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_36'/>
+36
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_36'>4</a>
+<span>
+1. isLineInteresting : removed conditional - replaced equality check with true &rarr; SURVIVED<br/>
+2. isLineInteresting : removed call to edu/hm/hafner/analysis/parser/JavaDocParser::hasGoals &rarr; SURVIVED<br/>
+3. isLineInteresting : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. isLineInteresting : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>                &#38;&#38; !hasGoals(MAVEN_COMPILER_PLUGIN)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_37'/>
+37
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_37'>6</a>
+<span>
+1. isLineInteresting : negated conditional &rarr; KILLED<br/>
+2. isLineInteresting : removed call to edu/hm/hafner/analysis/parser/JavaDocParser::lineContainsKeywords &rarr; KILLED<br/>
+3. isLineInteresting : Substituted 1 with 0 &rarr; KILLED<br/>
+4. isLineInteresting : Substituted 0 with 1 &rarr; KILLED<br/>
+5. isLineInteresting : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+6. isLineInteresting : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                &#38;&#38; lineContainsKeywords(line);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private boolean lineContainsKeywords(final String line) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_41'/>
+41
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_41'>5</a>
+<span>
+1. lineContainsKeywords : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. lineContainsKeywords : negated conditional &rarr; KILLED<br/>
+3. lineContainsKeywords : removed call to java/lang/String::contains &rarr; KILLED<br/>
+4. lineContainsKeywords : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+5. lineContainsKeywords : replaced boolean return with true for edu/hm/hafner/analysis/parser/JavaDocParser::lineContainsKeywords &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return line.contains(&#34;javadoc&#34;)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_42'/>
+42
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_42'>4</a>
+<span>
+1. lineContainsKeywords : removed call to java/lang/String::contains &rarr; KILLED<br/>
+2. lineContainsKeywords : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. lineContainsKeywords : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. lineContainsKeywords : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                || line.contains(&#34; @&#34;)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_43'/>
+43
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_43'>4</a>
+<span>
+1. lineContainsKeywords : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. lineContainsKeywords : removed call to edu/hm/hafner/analysis/parser/JavaDocParser::hasErrorPrefixAndErrorInMessage &rarr; KILLED<br/>
+3. lineContainsKeywords : negated conditional &rarr; KILLED<br/>
+4. lineContainsKeywords : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                || hasErrorPrefixAndErrorInMessage(line)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_44'/>
+44
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_44'>6</a>
+<span>
+1. lineContainsKeywords : removed call to edu/hm/hafner/analysis/parser/JavaDocParser::hasWarningsPrefixAndWarningInMessage &rarr; KILLED<br/>
+2. lineContainsKeywords : negated conditional &rarr; KILLED<br/>
+3. lineContainsKeywords : Substituted 0 with 1 &rarr; KILLED<br/>
+4. lineContainsKeywords : Substituted 1 with 0 &rarr; KILLED<br/>
+5. lineContainsKeywords : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+6. lineContainsKeywords : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                || hasWarningsPrefixAndWarningInMessage(line);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private boolean hasErrorPrefixAndErrorInMessage(final String line) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_48'/>
+48
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_48'>11</a>
+<span>
+1. hasErrorPrefixAndErrorInMessage : removed conditional - replaced equality check with true &rarr; SURVIVED<br/>
+2. hasErrorPrefixAndErrorInMessage : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. hasErrorPrefixAndErrorInMessage : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+4. hasErrorPrefixAndErrorInMessage : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+5. hasErrorPrefixAndErrorInMessage : replaced boolean return with true for edu/hm/hafner/analysis/parser/JavaDocParser::hasErrorPrefixAndErrorInMessage &rarr; KILLED<br/>
+6. hasErrorPrefixAndErrorInMessage : Substituted 1 with 0 &rarr; KILLED<br/>
+7. hasErrorPrefixAndErrorInMessage : removed call to java/lang/String::contains &rarr; KILLED<br/>
+8. hasErrorPrefixAndErrorInMessage : removed call to java/lang/String::contains &rarr; KILLED<br/>
+9. hasErrorPrefixAndErrorInMessage : negated conditional &rarr; KILLED<br/>
+10. hasErrorPrefixAndErrorInMessage : Substituted 0 with 1 &rarr; KILLED<br/>
+11. hasErrorPrefixAndErrorInMessage : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return line.contains(&#34;error&#34;) &#38;&#38; line.contains(&#34;ERROR&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_51'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private boolean hasWarningsPrefixAndWarningInMessage(final String line) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_52'/>
+52
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_52'>11</a>
+<span>
+1. hasWarningsPrefixAndWarningInMessage : removed conditional - replaced equality check with true &rarr; SURVIVED<br/>
+2. hasWarningsPrefixAndWarningInMessage : removed call to java/lang/String::contains &rarr; KILLED<br/>
+3. hasWarningsPrefixAndWarningInMessage : removed call to java/lang/String::contains &rarr; KILLED<br/>
+4. hasWarningsPrefixAndWarningInMessage : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+5. hasWarningsPrefixAndWarningInMessage : replaced boolean return with true for edu/hm/hafner/analysis/parser/JavaDocParser::hasWarningsPrefixAndWarningInMessage &rarr; KILLED<br/>
+6. hasWarningsPrefixAndWarningInMessage : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+7. hasWarningsPrefixAndWarningInMessage : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+8. hasWarningsPrefixAndWarningInMessage : negated conditional &rarr; KILLED<br/>
+9. hasWarningsPrefixAndWarningInMessage : negated conditional &rarr; KILLED<br/>
+10. hasWarningsPrefixAndWarningInMessage : Substituted 1 with 0 &rarr; KILLED<br/>
+11. hasWarningsPrefixAndWarningInMessage : Substituted 0 with 1 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return line.contains(&#34;warning&#34;) &#38;&#38; line.contains(&#34;WARNING&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_55'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    protected Optional&#60;Issue&#62; createIssue(final Matcher matcher, final LookaheadStream lookahead,</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            final IssueBuilder builder) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_58'/>
+58
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_58'>2</a>
+<span>
+1. createIssue : Substituted 3 with 4 &rarr; KILLED<br/>
+2. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        String type = matcher.group(3);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_59'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_60'/>
+60
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_60'>2</a>
+<span>
+1. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+2. createIssue : Substituted 4 with 5 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        String message = matcher.group(4);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_61'/>
+61
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_61'>1</a>
+<span>
+1. createIssue : removed call to java/util/regex/Pattern::matcher &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        Matcher tagMatcher = TAG_PATTERN.matcher(message);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_62'/>
+62
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_62'>4</a>
+<span>
+1. createIssue : removed conditional - replaced equality check with false &rarr; KILLED<br/>
+2. createIssue : removed conditional - replaced equality check with true &rarr; KILLED<br/>
+3. createIssue : negated conditional &rarr; KILLED<br/>
+4. createIssue : removed call to java/util/regex/Matcher::matches &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (tagMatcher.matches()) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_63'/>
+63
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_63'>8</a>
+<span>
+1. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED<br/>
+2. createIssue : Substituted 1 with 0 &rarr; KILLED<br/>
+3. createIssue : removed call to java/lang/String::format &rarr; KILLED<br/>
+4. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED<br/>
+5. createIssue : Substituted 1 with 0 &rarr; KILLED<br/>
+6. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+7. createIssue : Substituted 0 with 1 &rarr; KILLED<br/>
+8. createIssue : replaced call to java/lang/String::format with argument &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            builder.setCategory(String.format(&#34;JavaDoc %s&#34;, tagMatcher.group(1)));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        else {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_66'/>
+66
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_66'>2</a>
+<span>
+1. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            builder.setCategory(&#34;-&#34;);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_67'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_68'/>
+68
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_68'>8</a>
+<span>
+1. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+2. createIssue : replaced call to org/apache/commons/lang3/StringUtils::defaultIfEmpty with argument &rarr; KILLED<br/>
+3. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED<br/>
+4. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED<br/>
+5. createIssue : removed call to org/apache/commons/lang3/StringUtils::defaultIfEmpty &rarr; KILLED<br/>
+6. createIssue : Substituted 1 with 0 &rarr; KILLED<br/>
+7. createIssue : replaced return value with Optional.empty for edu/hm/hafner/analysis/parser/JavaDocParser::createIssue &rarr; KILLED<br/>
+8. createIssue : Substituted 2 with 3 &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return builder.setFileName(StringUtils.defaultIfEmpty(matcher.group(1), &#34; - &#34;))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_69'/>
+69
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_69'>3</a>
+<span>
+1. createIssue : removed call to java/util/regex/Matcher::group &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED<br/>
+3. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setLineStart(matcher.group(2))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_70'/>
+70
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_70'>2</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED<br/>
+2. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setMessage(message)</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_71'/>
+71
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_71'>3</a>
+<span>
+1. createIssue : replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED<br/>
+2. createIssue : removed call to edu/hm/hafner/analysis/Severity::guessFromString &rarr; KILLED<br/>
+3. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .setSeverity(Severity.guessFromString(type))</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_72'/>
+72
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_72'>1</a>
+<span>
+1. createIssue : removed call to edu/hm/hafner/analysis/IssueBuilder::buildOptional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>                .buildOptional();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@3994d744_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_35'>35</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_35'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue8630()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue55805()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to edu/hm/hafner/analysis/parser/AbstractMavenLogParser::isLineInteresting &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue8630()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue55805()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> replaced boolean return with true for edu/hm/hafner/analysis/parser/JavaDocParser::isLineInteresting &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_36'>36</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_36'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with true &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>none</span></span> removed call to edu/hm/hafner/analysis/parser/JavaDocParser::hasGoals &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_37'>37</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_37'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to edu/hm/hafner/analysis/parser/JavaDocParser::lineContainsKeywords &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>isLineInteresting<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_41'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue32298()]</span></span> removed call to java/lang/String::contains &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue32298()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> replaced boolean return with true for edu/hm/hafner/analysis/parser/JavaDocParser::lineContainsKeywords &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_42'>42</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_42'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue7718()]</span></span> removed call to java/lang/String::contains &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue7718()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_43'>43</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_43'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()]</span></span> removed call to edu/hm/hafner/analysis/parser/JavaDocParser::hasErrorPrefixAndErrorInMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_44'>44</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_44'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()]</span></span> removed call to edu/hm/hafner/analysis/parser/JavaDocParser::hasWarningsPrefixAndWarningInMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>lineContainsKeywords<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_48'>48</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_48'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:falseJavaDocPositives()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with true &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> replaced boolean return with true for edu/hm/hafner/analysis/parser/JavaDocParser::hasErrorPrefixAndErrorInMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()]</span></span> removed call to java/lang/String::contains &rarr; KILLED</p> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()]</span></span> removed call to java/lang/String::contains &rarr; KILLED</p> <p class='KILLED'><span class='pop'>9.<span><b>9</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:falseJavaDocPositives()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>10.<span><b>10</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>11.<span><b>11</b><br/><b>Location : </b>hasErrorPrefixAndErrorInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()]</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_52'>52</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_52'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()]</span></span> removed call to java/lang/String::contains &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()]</span></span> removed call to java/lang/String::contains &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> replaced boolean return with true for edu/hm/hafner/analysis/parser/JavaDocParser::hasWarningsPrefixAndWarningInMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()]</span></span> negated conditional &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>9.<span><b>9</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>none</span></span> removed conditional - replaced equality check with true &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>10.<span><b>10</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>11.<span><b>11</b><br/><b>Location : </b>hasWarningsPrefixAndWarningInMessage<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_58'>58</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_58'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> Substituted 3 with 4 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_60'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> Substituted 4 with 5 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_61'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to java/util/regex/Pattern::matcher &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_62'>62</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_62'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldHaveCategory()]</span></span> removed conditional - replaced equality check with false &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()]</span></span> removed conditional - replaced equality check with true &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()]</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldHaveCategory()]</span></span> removed call to java/util/regex/Matcher::matches &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_63'>63</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_63'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldHaveCategory()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldHaveCategory()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldHaveCategory()]</span></span> removed call to java/lang/String::format &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldHaveCategory()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldHaveCategory()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> Substituted 0 with 1 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldHaveCategory()]</span></span> replaced call to java/lang/String::format with argument &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_66'>66</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_66'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue7718()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setCategory with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue7718()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setCategory &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_68'>68</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_68'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> replaced call to org/apache/commons/lang3/StringUtils::defaultIfEmpty with argument &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setFileName &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setFileName with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to org/apache/commons/lang3/StringUtils::defaultIfEmpty &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> Substituted 1 with 0 &rarr; KILLED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> replaced return value with Optional.empty for edu/hm/hafner/analysis/parser/JavaDocParser::createIssue &rarr; KILLED</p> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> Substituted 2 with 3 &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_69'>69</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_69'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to java/util/regex/Matcher::group &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setLineStart &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setLineStart with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_70'>70</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_70'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setMessage &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setMessage with receiver &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_71'>71</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_71'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()]</span></span> replaced call to edu/hm/hafner/analysis/IssueBuilder::setSeverity with receiver &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()]</span></span> removed call to edu/hm/hafner/analysis/Severity::guessFromString &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::setSeverity &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@3994d744_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@3994d744_72'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>createIssue<br/><b>Killed by : </b>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()]</span></span> removed call to edu/hm/hafner/analysis/IssueBuilder::buildOptional &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>CONSTRUCTOR_CALLS</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>EXPERIMENTAL_ARGUMENT_PROPAGATION</li>
+<li class='mutator'>EXPERIMENTAL_BIG_DECIMAL</li>
+<li class='mutator'>EXPERIMENTAL_BIG_INTEGER</li>
+<li class='mutator'>EXPERIMENTAL_MEMBER_VARIABLE</li>
+<li class='mutator'>EXPERIMENTAL_NAKED_RECEIVER</li>
+<li class='mutator'>EXPERIMENTAL_REMOVE_SWITCH_MUTATOR_[0-99]</li>
+<li class='mutator'>EXPERIMENTAL_SWITCH</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INLINE_CONSTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NON_VOID_METHOD_CALLS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_EQUAL_IF</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_ELSE</li>
+<li class='mutator'>REMOVE_CONDITIONALS_ORDER_IF</li>
+<li class='mutator'>REMOVE_INCREMENTS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue8630()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue54506()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue55805()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue70658RemovePrefixAndSuffixFromMavenPlugins()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue67521IgnoreJavaDocWarnings()] (2 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldHaveCategory()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:falseJavaDocPositives()] (7 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldParseJavaDocsWarningsWithMavenSourcePlugin()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue4576()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue37975()] (1 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:shouldParseAllIssues()] (3 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue7718()] (0 ms)</li><li>edu.hm.hafner.analysis.parser.JavaDocParserTest.[engine:junit-jupiter]/[class:edu.hm.hafner.analysis.parser.JavaDocParserTest]/[method:issue32298()] (1 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.15.1
+
+</body>
+</html>
